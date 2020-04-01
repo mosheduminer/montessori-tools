@@ -1,5 +1,5 @@
 <script>
-  let headers = [10000, 1000, 100, 10, 1];
+  let headers = ['10,000', '1,000', '100', '10', '1'];
   let colors = ["blue", "red", "green", "black", "blue"];
   import Table from "./Table.svelte";
   import PenBar from "./PenBar.svelte";

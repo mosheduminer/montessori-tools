@@ -5,10 +5,13 @@
     color = $penColor;
   };
 
+  export let bordered = true;
+
   export let h, w;
   let diameter;
   // we need to wrap this as reactive, as `h` and `w` start as undefined
   $: {
+    // dividing by 14 rather than 10, so the circles will be smaller than the cell
     if (h < w) {
       diameter = h / 14;
     } else {
@@ -18,7 +21,7 @@
 </script>
 
 <style>
-  td {
+  .bordered {
     border-color: black;
     border-style: solid;
     border-width: 2px;
@@ -29,7 +32,7 @@
   }
 </style>
 
-<td width="10%" on:click={handleClick}>
+<td width="10%" on:click={handleClick} class:bordered>
   <span
     style="background-color: {color}; height: {diameter}px; width: {diameter}px;">
     &nbsp;

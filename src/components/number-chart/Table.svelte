@@ -3,6 +3,7 @@
   export let color = "black";
 
   import Cell from "./Cell.svelte";
+  import RolloverRow from "./RolloverRow.svelte";
 
   let h, w;
 
@@ -35,6 +36,7 @@
     border-style: solid;
     border-width: 2px;
     border-bottom-width: 1px;
+    font-weight: bold;
   }
 </style>
 
@@ -51,5 +53,6 @@
         {/each}
       </tr>
     {/each}
+    <RolloverRow {h} {w} />
   </tbody>
 </table>
