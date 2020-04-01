@@ -6,7 +6,7 @@
 
 <style>
   div {
-    height: calc(100% - 57px);
+    height: 100%;
     width: 100%;
     position: absolute;
     background-color: cornsilk;

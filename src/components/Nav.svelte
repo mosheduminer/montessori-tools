@@ -1,5 +1,7 @@
 <script>
   export let segment;
+
+  let frontPages = ["about"];
 </script>
 
 <style>
@@ -48,31 +50,33 @@
   }
 </style>
 
-<nav>
-  <ul>
-    <li>
-      <a aria-current={segment === undefined ? 'page' : undefined} href=".">
-        home
-      </a>
-    </li>
-    <li>
-      <a aria-current={segment === 'about' ? 'page' : undefined} href="about">
-        about
-      </a>
-    </li>
-    <li>
-      <a
-        aria-current={segment === 'peg-board' ? 'page' : undefined}
-        href="peg-board">
-        Peg Board
-      </a>
-    </li>
-    <li>
-      <a
-        aria-current={segment === 'number-chart' ? 'page' : undefined}
-        href="number-chart">
-        Number Chart
-      </a>
-    </li>
-  </ul>
-</nav>
+{#if segment === undefined || segment in frontPages}
+  <nav>
+    <ul>
+      <li>
+        <a aria-current={segment === undefined ? 'page' : undefined} href=".">
+          home
+        </a>
+      </li>
+      <li>
+        <a aria-current={segment === 'about' ? 'page' : undefined} href="about">
+          about
+        </a>
+      </li>
+      <li>
+        <a
+          aria-current={segment === 'peg-board' ? 'page' : undefined}
+          href="peg-board">
+          Peg Board
+        </a>
+      </li>
+      <li>
+        <a
+          aria-current={segment === 'number-chart' ? 'page' : undefined}
+          href="number-chart">
+          Number Chart
+        </a>
+      </li>
+    </ul>
+  </nav>
+{/if}
