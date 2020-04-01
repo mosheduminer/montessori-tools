@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-  <title>Montessori Tools - Peg Board</title>
+  <title>Montessori Tools - Number Dot Chart</title>
 </svelte:head>
 
 <Chart />
