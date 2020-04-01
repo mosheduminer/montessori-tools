@@ -1,7 +1,7 @@
 <script>
   export let segment;
 
-  let frontPages = ["about"];
+  let frontPages = ["about", undefined];
 </script>
 
 <style>
@@ -50,7 +50,7 @@
   }
 </style>
 
-{#if segment === undefined || segment in frontPages}
+{#if frontPages.includes(segment)}
   <nav>
     <ul>
       <li>
