@@ -67,5 +67,12 @@
         Peg Board
       </a>
     </li>
+    <li>
+      <a
+        aria-current={segment === 'number-chart' ? 'page' : undefined}
+        href="number-chart">
+        Number Chart
+      </a>
+    </li>
   </ul>
 </nav>
