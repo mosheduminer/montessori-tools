@@ -9,12 +9,16 @@
   import { penColor } from "./store";
 
   let url = "";
-  if ($penColor === "black") {
-    url = "/icons/edit-black.svg";
-  } else if ($penColor === "blue") {
-    url = "/icons/edit-blue.svg";
-  } else if ($penColor === "red") {
-    url = "/icons/edit-red.svg";
+  $: {
+    if ($penColor === "black") {
+      url = "/icons/edit-black.svg";
+    } else if ($penColor === "blue") {
+      url = "/icons/edit-blue.svg";
+    } else if ($penColor === "red") {
+      url = "/icons/edit-red.svg";
+    } else if ($penColor === "white") {
+      url = "/icons/eraser.svg";
+    }
   }
 </script>
 

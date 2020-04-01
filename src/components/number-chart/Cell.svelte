@@ -2,7 +2,6 @@
   let color = "white";
   import { penColor } from "./store";
   const handleClick = () => {
-    // TODO: need to make a bar for selecting colors and erases.
     color = $penColor;
   };
 
