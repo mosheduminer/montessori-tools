@@ -19,7 +19,7 @@
 </style>
 
 <svelte:head>
-	<title>Montissori Tools</title>
+	<title>Montessori Tools</title>
 </svelte:head>
 
 <h1>Coming Soon!</h1>
