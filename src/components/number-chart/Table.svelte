@@ -17,6 +17,8 @@
       url = "/icons/edit-blue.svg";
     } else if ($penColor === "red") {
       url = "/icons/edit-red.svg";
+    } else if ($penColor === "green") {
+      url = "/icons/edit-green.svg";
     } else if ($penColor === "white") {
       url = "/icons/eraser.svg";
     }

@@ -30,6 +30,11 @@
       title="Black Pen"
       on:click={() => setColor('black')} />
     <img
+      src="/icons/edit-green.svg"
+      alt="Green Pen"
+      title="Green Pen"
+      on:click={() => setColor('green')} />
+    <img
       src="/icons/edit-blue.svg"
       alt="Blue Pen"
       title="Blue Pen"
