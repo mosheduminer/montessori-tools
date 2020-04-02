@@ -1,7 +1,5 @@
 <script>
   import Cell from "./Cell.svelte";
-
-  export let h, w;
 </script>
 
 <style>
@@ -13,6 +11,6 @@
 
 <tr>
   {#each Array(10) as i}
-    <Cell bordered={false} {h} {w} />
+    <Cell bordered={false} />
   {/each}
 </tr>

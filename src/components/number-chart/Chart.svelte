@@ -3,31 +3,28 @@
   let colors = ["blue", "red", "green", "black", "blue"];
   import Table from "./Table.svelte";
   import PenBar from "./PenBar.svelte";
+  import DrawArea from "./DrawArea.svelte";
 </script>
 
 <style>
-  div {
-    display: flex;
-  }
   input {
+    box-sizing: border-box;
     text-align: center;
     font-size: 56px;
-    flex-grow: 1;
-  }
-
-  input[type="number"] {
+    float: left;
+    width: 20%;
     font-family: cursive;
   }
 </style>
 
 <PenBar />
 
-{#each headers as header, index}
-  <Table {header} color={colors[index]} />
-{/each}
-
-<div>
-  {#each Array(5) as i}
-    <input type="number" min="0" max="9" />
+<DrawArea>
+  {#each headers as header, index}
+    <Table {header} color={colors[index]} />
   {/each}
-</div>
+</DrawArea>
+
+{#each Array(5) as i}
+  <input type="number" min="0" max="9" />
+{/each}
