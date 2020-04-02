@@ -13,9 +13,6 @@
     text-align: center;
     font-size: 56px;
     flex-grow: 1;
-  }
-
-  input[type="number"] {
     font-family: cursive;
   }
 </style>
