@@ -1,26 +1,31 @@
 <script>
   import Lines from "./Lines.svelte";
 
+  import { onMount } from "svelte";
+
   let isDrawing = false;
   let lines = [];
 
   let area;
 
-  // the following variable and function alter the lines appropriately on window resize
-  let lastDimensions = { x: window.innerWidth, y: window.innerHeight };
-  window.onresize = () => {
-    let x = window.innerWidth,
-      y = window.innerHeight;
-    let ratioX = x / lastDimensions["x"],
-      ratioY = y / lastDimensions["y"];
-    console.log(ratioX, ratioY);
-    lines = lines.map(line => {
-      return line.map(point => {
-        return { x: point.x * ratioX, y: point.y * ratioY };
+  // there is no window if SSR
+  onMount(() => {
+    // the following variable and function alter the lines appropriately on window resize
+    let lastDimensions = { x: window.innerWidth, y: window.innerHeight };
+    window.onresize = () => {
+      let x = window.innerWidth,
+        y = window.innerHeight;
+      let ratioX = x / lastDimensions["x"],
+        ratioY = y / lastDimensions["y"];
+      console.log(ratioX, ratioY);
+      lines = lines.map(line => {
+        return line.map(point => {
+          return { x: point.x * ratioX, y: point.y * ratioY };
+        });
       });
-    });
-    lastDimensions = { x, y };
-  };
+      lastDimensions = { x, y };
+    };
+  });
 
   // add a point to the last line if `init` false,
   // else creates a new line and adds a point
@@ -39,17 +44,18 @@
     lines = lines;
   };
 
-  const handleMouseDown = (event, x, y) => {
-    if (event.button !== 0) {
-      return;
-    }
+  const handleMouseDown = (x, y) => {
+    console.log(x,y)
     pushToLine(x, y, true);
     isDrawing = true;
   };
-  document.addEventListener("mouseup", () => (isDrawing = false));
+  onMount(() => {
+    document.addEventListener("mouseup", () => (isDrawing = false));
+    document.addEventListener("touchend", () => (isDrawing = false));
+  });
 
-  const handleMouseMove = (event, x, y) => {
-    if (!isDrawing || event.button !== 0) {
+  const handleMouseMove = (x, y) => {
+    if (!isDrawing) {
       return;
     }
     pushToLine(x, y, false);
@@ -58,8 +64,12 @@
 
 <div
   bind:this={area}
-  on:mousedown={e => handleMouseDown(e, e.clientX, e.clientY)}
-  on:mousemove={e => handleMouseMove(e, e.clientX, e.clientY)}>
+  on:mousedown={e => {
+    if (e.button === 0) handleMouseDown(e.clientX, e.clientY);
+  }}
+  on:mousemove={e => handleMouseMove(e.clientX, e.clientY)}
+  on:touchstart|preventDefault={e => handleMouseDown(e.changedTouches[0].clientX, e.changedTouches[0].clientY)}
+  on:touchmove|preventDefault={e => handleMouseMove(e.changedTouches[0].clientX, e.changedTouches[0].clientY)}>
   <Lines {lines} />
   <slot />
 </div>
