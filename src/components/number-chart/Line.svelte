@@ -4,6 +4,8 @@
 
   import { penColor } from "./store";
 
+  import { height } from "./store";
+
   // assinging a new variable, so the color of
   // a line will not change after it is drawn
   let color = $penColor;
@@ -18,6 +20,6 @@
   }
 </style>
 
-<svg>
+<svg style="height: {$height}px;">
   <path d={pathData} stroke={color} fill="none" stroke-width="5" />
 </svg>

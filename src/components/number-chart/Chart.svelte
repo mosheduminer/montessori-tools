@@ -1,4 +1,5 @@
 <script>
+  import { height as heightStore } from "./store";
   import Table from "./Table.svelte";
   import PenBar from "./PenBar.svelte";
   import DrawArea from "./DrawArea.svelte";
@@ -7,6 +8,8 @@
   let colors = ["blue", "red", "green", "black", "blue"];
 
   let chart;
+  let height;
+  $: heightStore.set(height);
 </script>
 
 <style>
@@ -24,13 +27,15 @@
   }
 </style>
 
-<PenBar chart={chart} />
+<PenBar {chart} />
 
 <div id="number-chart" bind:this={chart}>
   <DrawArea>
-    {#each headers as header, index}
-      <Table {header} color={colors[index]} />
-    {/each}
+    <div bind:clientHeight={height}>
+      {#each headers as header, index}
+        <Table {header} color={colors[index]} />
+      {/each}
+    </div>
   </DrawArea>
 
   <div>

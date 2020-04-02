@@ -45,7 +45,6 @@
   };
 
   const handleMouseDown = (x, y) => {
-    console.log(x,y)
     pushToLine(x, y, true);
     isDrawing = true;
   };
