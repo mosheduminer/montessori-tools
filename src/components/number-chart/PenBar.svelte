@@ -1,8 +1,20 @@
 <script>
   import { penColor } from "./store";
+  import screenshot from "../../lib/screenshot";
+
+  export let chart;
+
   const setColor = color => {
     penColor.set(color);
   };
+
+  const saveImage = () => {
+    screenshot(chart, 'number-chart');
+  }
+
+  const copyChart = () => {
+    screenshot(chart, 'number-chart', true);
+  }
 </script>
 
 <style>
@@ -49,5 +61,8 @@
       alt="Eraser"
       title="Eraser"
       on:click={() => setColor('white')} />
+
+    <button on:click={copyChart}>Save to Clipboard</button>
+    <button on:click={saveImage}>Download Image</button>
   </span>
 </div>
