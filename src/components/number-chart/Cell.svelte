@@ -32,7 +32,7 @@
   }
 </style>
 
-<td width="10%" on:click={handleClick} class:bordered>
+<td on:click={handleClick} class:bordered>
   <span
     style="background-color: {color}; height: {diameter}px; width: {diameter}px;">
     &nbsp;

@@ -25,25 +25,25 @@
 <div>
   <span>
     <img
-      src="/icons/edit-black.svg"
-      alt="Black Pen"
-      title="Black Pen"
-      on:click={() => setColor('black')} />
+      src="/icons/edit-blue.svg"
+      alt="Blue Pen"
+      title="Blue Pen"
+      on:click={() => setColor('blue')} />
     <img
       src="/icons/edit-green.svg"
       alt="Green Pen"
       title="Green Pen"
       on:click={() => setColor('green')} />
     <img
-      src="/icons/edit-blue.svg"
-      alt="Blue Pen"
-      title="Blue Pen"
-      on:click={() => setColor('blue')} />
-    <img
       src="/icons/edit-red.svg"
       alt="Red Pen"
       title="Red Pen"
       on:click={() => setColor('red')} />
+    <img
+      src="/icons/edit-black.svg"
+      alt="Black Pen"
+      title="Black Pen"
+      on:click={() => setColor('black')} />
     <img
       src="/icons/eraser.svg"
       alt="Eraser"
