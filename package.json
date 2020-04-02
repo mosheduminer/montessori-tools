@@ -1,6 +1,6 @@
 {
-  "name": "TODO",
-  "description": "TODO",
+  "name": "montissori-tools",
+  "description": "Tools for the montissori classroom",
   "version": "0.0.1",
   "scripts": {
     "dev": "sapper dev",
