@@ -5,8 +5,6 @@
   import Cell from "./Cell.svelte";
   import RolloverRow from "./RolloverRow.svelte";
 
-  let h, w;
-
   import { penColor } from "./store";
 
   let url = "";
@@ -44,17 +42,14 @@
 
 <table>
   <caption style="color: {color}">{header}</caption>
-  <tbody
-    style="cursor: url({url}) 0 32, pointer;"
-    bind:clientWidth={w}
-    bind:clientHeight={h}>
+  <tbody style="cursor: url({url}) 0 32, pointer;">
     {#each Array(10) as i}
       <tr>
         {#each Array(10) as j}
-          <Cell {h} {w} />
+          <Cell />
         {/each}
       </tr>
     {/each}
-    <RolloverRow {h} {w} />
+    <RolloverRow />
   </tbody>
 </table>

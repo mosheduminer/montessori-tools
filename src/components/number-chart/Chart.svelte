@@ -1,34 +1,42 @@
 <script>
+  import { height as heightStore } from "./store";
   import Table from "./Table.svelte";
   import PenBar from "./PenBar.svelte";
+  import DrawArea from "./DrawArea.svelte";
 
   let headers = ["10,000", "1,000", "100", "10", "1"];
   let colors = ["blue", "red", "green", "black", "blue"];
 
   let chart;
+  let height;
+  $: heightStore.set(height);
 </script>
 
 <style>
   #number-chart {
     background: #fff;
   }
-  #number-chart > div {
-    display: flex;
-  }
+
   input {
+    box-sizing: border-box;
     text-align: center;
     font-size: 56px;
-    flex-grow: 1;
+    float: left;
+    width: 20%;
     font-family: cursive;
   }
 </style>
 
-<PenBar chart={chart} />
+<PenBar {chart} />
 
 <div id="number-chart" bind:this={chart}>
-  {#each headers as header, index}
-    <Table {header} color={colors[index]} />
-  {/each}
+  <DrawArea>
+    <div bind:clientHeight={height}>
+      {#each headers as header, index}
+        <Table {header} color={colors[index]} />
+      {/each}
+    </div>
+  </DrawArea>
 
   <div>
     {#each Array(5) as i}
