@@ -74,7 +74,7 @@
         <a
           aria-current={segment === 'number-chart' ? 'page' : undefined}
           href="number-chart">
-          Number Chart
+          Dot Game
         </a>
       </li>
     </ul>
