@@ -47,8 +47,8 @@
   <NumbersToAdd />
 
   <div id="total-inputs">
-    {#each Array(5) as i}
-      <input type="number" min="0" max="9" />
+    {#each Array(5) as i, index}
+      <input type="number" min="0" max="{index === 0 ? 99: 9}" />
     {/each}
   </div>
 </div>
