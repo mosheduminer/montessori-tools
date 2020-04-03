@@ -1,10 +1,5 @@
 <script>
   let color = "white";
-  import { penColor } from "./store";
-  const handleClick = () => {
-    return;
-    color = $penColor;
-  };
 
   export let bordered = true;
 </script>
@@ -17,4 +12,4 @@
   }
 </style>
 
-<td on:click={handleClick} class:bordered>&nbsp;</td>
+<td class:bordered>&nbsp;</td>

@@ -9,6 +9,11 @@
   // assinging a new variable, so the color of
   // a line will not change after it is drawn
   let color = $penColor;
+
+  let width = 5;
+  if (color === "white") {
+    width = 15;
+  }
 </script>
 
 <style>
@@ -21,5 +26,5 @@
 </style>
 
 <svg style="height: {$height}px;">
-  <path d={pathData} stroke={color} fill="none" stroke-width="5" />
+  <path d={pathData} stroke={color} fill="none" stroke-width={width} />
 </svg>
