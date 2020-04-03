@@ -26,6 +26,11 @@
     width: 20%;
     font-family: cursive;
   }
+
+  #total-inputs {
+    display: inline-block;
+    width: calc(100% - 160px);
+  }
 </style>
 
 <PenBar {chart} />
@@ -41,7 +46,7 @@
 
   <NumbersToAdd />
 
-  <div>
+  <div id="total-inputs">
     {#each Array(5) as i}
       <input type="number" min="0" max="9" />
     {/each}
