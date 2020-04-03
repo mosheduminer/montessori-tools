@@ -3,6 +3,7 @@
   import Table from "./Table.svelte";
   import PenBar from "./PenBar.svelte";
   import DrawArea from "./DrawArea.svelte";
+  import NumbersToAdd from "./NumbersToAdd.svelte";
 
   let headers = ["10,000", "1,000", "100", "10", "1"];
   let colors = ["blue", "red", "green", "black", "blue"];
@@ -37,6 +38,8 @@
       {/each}
     </div>
   </DrawArea>
+
+  <NumbersToAdd />
 
   <div>
     {#each Array(5) as i}

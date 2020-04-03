@@ -17,7 +17,6 @@
         y = window.innerHeight;
       let ratioX = x / lastDimensions["x"],
         ratioY = y / lastDimensions["y"];
-      console.log(ratioX, ratioY);
       lines = lines.map(line => {
         return line.map(point => {
           return { x: point.x * ratioX, y: point.y * ratioY };
@@ -60,6 +59,13 @@
     pushToLine(x, y, false);
   };
 </script>
+
+<style>
+  div {
+    display: inline-block;
+    width: calc(100% - 160px);
+  }
+</style>
 
 <div
   bind:this={area}

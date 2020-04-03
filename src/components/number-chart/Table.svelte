@@ -41,8 +41,10 @@
 </style>
 
 <table>
-  <caption style="color: {color}">{header}</caption>
-  <tbody style="cursor: url({url}) 0 32, pointer;">
+  <caption style="color: {color}; cursor: url({url}) 0 32, pointer;">
+    {header}
+  </caption>
+  <tbody>
     {#each Array(10) as i}
       <tr>
         {#each Array(10) as j}

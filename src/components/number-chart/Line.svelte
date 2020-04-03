@@ -20,8 +20,9 @@
   svg {
     position: fixed;
     pointer-events: none;
+    left: 0;
     height: 100%;
-    width: 100vw;
+    width: calc(100vw - 160px);
   }
 </style>
 
