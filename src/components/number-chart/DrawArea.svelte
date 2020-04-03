@@ -7,16 +7,18 @@
   let lines = [];
 
   let area;
+  let h, w;
 
   // there is no window if SSR
   onMount(() => {
     // the following variable and function alter the lines appropriately on window resize
-    let lastDimensions = { x: window.innerWidth, y: window.innerHeight };
+    let lastDimensions = { x: w, y: h };
     window.onresize = () => {
-      let x = window.innerWidth,
-        y = window.innerHeight;
-      let ratioX = x / lastDimensions["x"],
-        ratioY = y / lastDimensions["y"];
+      let x = w,
+        y = h;
+      let ratioX = lastDimensions["x"] / x,
+        ratioY = lastDimensions["y"]/ y ;
+      console.log(ratioX, ratioY)
       lines = lines.map(line => {
         return line.map(point => {
           return { x: point.x * ratioX, y: point.y * ratioY };
@@ -68,6 +70,8 @@
 </style>
 
 <div
+  bind:clientWidth={w}
+  bind:clientHeight={h}
   bind:this={area}
   on:mousedown={e => {
     if (e.button === 0) handleMouseDown(e.clientX, e.clientY);
