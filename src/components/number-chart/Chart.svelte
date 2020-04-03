@@ -3,6 +3,7 @@
   import Table from "./Table.svelte";
   import PenBar from "./PenBar.svelte";
   import DrawArea from "./DrawArea.svelte";
+  import NumbersToAdd from "./NumbersToAdd.svelte";
 
   let headers = ["10,000", "1,000", "100", "10", "1"];
   let colors = ["blue", "red", "green", "black", "blue"];
@@ -25,6 +26,11 @@
     width: 20%;
     font-family: cursive;
   }
+
+  #total-inputs {
+    display: inline-block;
+    width: calc(100% - 160px);
+  }
 </style>
 
 <PenBar {chart} />
@@ -38,9 +44,11 @@
     </div>
   </DrawArea>
 
-  <div>
-    {#each Array(5) as i}
-      <input type="number" min="0" max="9" />
+  <NumbersToAdd />
+
+  <div id="total-inputs">
+    {#each Array(5) as i, index}
+      <input type="number" min="0" max="{index === 0 ? 99: 9}" />
     {/each}
   </div>
 </div>
