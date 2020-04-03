@@ -10,7 +10,7 @@
 </style>
 
 <div>
-  {#each Array(4) as i, index}
-    <NumberCell on:next {index} />
+  {#each Array(4) as i}
+    <NumberCell on:next />
   {/each}
 </div>
