@@ -23,14 +23,14 @@
 </style>
 
 <svelte:head>
-	<title>Montessori Games</title>
+	<title>Virtual Montessori Materials</title>
 </svelte:head>
 
 <div class="container">
-	<h1>Montessori Games</h1>
+	<h1>Virtual Montessori Materials</h1>
 
 	<p>
-		Welcome to Montessori Games. This is a collection of games and tools to support teachers during the COVID-19 pandemic and beyond.
+		Welcome to Virtual Montessori Materials. This is a collection of games and tools to support teachers during the COVID-19 pandemic and beyond.
 		<br/><br/>
 		All of these games are developed by volunteers during their spare time.
 		If you find value in these tools and want to support their creation and maintanence please <a href="https://www.paypal.me/mosheduminer">donate here.</a>
