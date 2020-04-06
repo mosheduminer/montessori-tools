@@ -9,6 +9,8 @@
     border-bottom: 1px solid rgba(255, 62, 0, 0.1);
     font-weight: 300;
     padding: 0 1em;
+    background: #444;
+    color: #fff;
   }
 
   ul {
@@ -55,12 +57,7 @@
     <ul>
       <li>
         <a aria-current={segment === undefined ? 'page' : undefined} href=".">
-          home
-        </a>
-      </li>
-      <li>
-        <a aria-current={segment === 'about' ? 'page' : undefined} href="about">
-          about
+          Home
         </a>
       </li>
       <li>
@@ -72,8 +69,8 @@
       </li>
       <li>
         <a
-          aria-current={segment === 'number-chart' ? 'page' : undefined}
-          href="number-chart">
+          aria-current={segment === 'dot-game' ? 'page' : undefined}
+          href="dot-game">
           Dot Game
         </a>
       </li>

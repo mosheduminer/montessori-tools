@@ -1,18 +1,18 @@
 {
 	"background_color": "#ffffff",
 	"theme_color": "#333333",
-	"name": "Montessori Tools",
-	"short_name": "Montessori Tools",
+	"name": "Virtual Montessori Materials",
+	"short_name": "Virtual Montessori Materials",
 	"display": "minimal-ui",
 	"start_url": "/",
 	"icons": [
 		{
-			"src": "logo-192.png",
-			"sizes": "192x192",
+			"src": "favicon/favicon-196x196.png",
+			"sizes": "196x196",
 			"type": "image/png"
 		},
 		{
-			"src": "logo-512.png",
+			"src": "favicon/favicon-512x512.png",
 			"sizes": "512x512",
 			"type": "image/png"
 		}

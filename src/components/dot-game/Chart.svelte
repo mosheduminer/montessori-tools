@@ -6,7 +6,7 @@
   import NumbersToAdd from "./NumbersToAdd.svelte";
 
   let headers = ["10,000", "1,000", "100", "10", "1"];
-  let colors = ["blue", "red", "green", "black", "blue"];
+  let colors = ["blue", "green", "red", "blue", "green"];
 
   let chart;
   let height;

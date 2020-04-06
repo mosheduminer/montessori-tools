@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-  <title>Montessori Tools - Peg Board</title>
+  <title>Peg Board - Virtual Montessori Materials</title>
 </svelte:head>
 
 <Board />
