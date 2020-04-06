@@ -1,9 +1,9 @@
 <script>
-  import Chart from "../components/number-chart/Chart.svelte";
+  import Chart from "../components/dot-game/Chart.svelte";
 </script>
 
 <svelte:head>
-  <title>Montessori Tools - Dot Game</title>
+  <title>Dot Game - Virtual Montessori Materials</title>
 </svelte:head>
 
 <Chart />
