@@ -18,15 +18,19 @@
     { color: colors.BLUE, x: 142, y: 14 }
   ];
 
-  let pegs = [ ...initialPegs.map(p => ({ ...p})) ];
+  let id = 1;
+  const getId = () => id++;
+
+  let pegs = [ ...initialPegs.map(p => ({ ...p, id: getId()})) ];
 
   const movePeg = ({ color, from, to }) => {
+    console.log({ from, to, pegs: [...pegs], color });
     const peg = pegs[from.index];
     let success = true;
 
     // delete peg by moving back to its initial place
     if (to.y === 14 && [14, 78, 142].indexOf(to.x) >= 0) {
-      if (from.y !== 14 || [14, 78, 142].indexOf(from.x) < 0) {
+      if (from.y !== 14 || (from.y === 14 && [14, 78, 142].indexOf(from.x) < 0)) {
         pegs.splice(from.index, 1);
       } else { // it is another placeholder peg
         success = false;
@@ -35,12 +39,15 @@
     } else {
       // make sure there is always a dot in the drawer
       if (from.y === 14 && [14, 78, 142].indexOf(from.x) >= 0) {
-        pegs.push({ ...initialPegs.find(p => p.x === from.x) });
+        pegs.push({ ...initialPegs.find(p => p.x === from.x), id: getId() });
       }
-
-      pegs = pegs.map(p => p === peg ? { color, x: to.x, y: to.y } : p);
     }
 
+    if (success) {
+      pegs = pegs.map(p => p.id === peg.id ? { color, x: to.x, y: to.y, id: peg.id } : p);
+    }
+
+    console.log({ success, pegs: [...pegs], color });
     return success;
   }
 </script>
@@ -76,7 +83,7 @@
   on:touchmove|preventDefault={e => update(e.changedTouches[0].clientX, e.changedTouches[0].clientY)}>
   <span id="holder"></span>
 
-  {#each pegs as peg, i}
+  {#each pegs as peg, i (peg.id)}
     <Peg index={i} {...peg} {movePeg} />
   {/each}
 </div>
