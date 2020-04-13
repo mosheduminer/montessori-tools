@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-  <title>Multi Digit Multiplier - Virtual Montessori Materials</title>
+  <title>Checkerboard - Virtual Montessori Materials</title>
 </svelte:head>
 
 <Game />
