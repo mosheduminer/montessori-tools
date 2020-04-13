@@ -1,10 +1,8 @@
 <script>
-    import { publish, TOPICS } from '../../lib/pubsub';
-
-    export let topic;
+    import { movePosition } from "./stores";
 
     const update = (x, y) => {
-        publish(topic || TOPICS.DRAG_AREA.MOVE, { x, y });
+        movePosition.set({x, y});
     }
 </script>
 
