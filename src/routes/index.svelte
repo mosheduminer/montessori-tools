@@ -76,9 +76,9 @@
 		background-image: url("/img/dot-game.jpg");
 	}
 
-	/* a#checkerboard {
+	a#checkerboard {
 		background-image: url("/img/checkerboard.jpg");
-	} */
+	}
 
 	ul#games-list > li > a::before {
 		content: " ";
@@ -148,11 +148,11 @@
 				<span>Dot Game</span>
 			</a>
 		</li>
-		<!-- <li>
+		<li style="display: none;">
 			<a href="/checkerboard" id="checkerboard">
 				<span>Checkerboard</span>
 			</a>
-		</li> -->
+		</li>
 	</ul>
 
 	<h3>And more on the way!</h3>
