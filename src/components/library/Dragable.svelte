@@ -1,17 +1,16 @@
 <script>
     import { spring } from 'svelte/motion';
     import { createEventDispatcher, onMount } from 'svelte';
-    import { subscribe, TOPICS } from '../../lib/pubsub';
+    import { movePosition } from "./stores";
 
     export let x;
     export let y;
     export let index;
-    export let topic;
     export let normalize;
     export let validate;
 
     let element;
-    let listener;
+    let unsubscribe;
     let coords;
     const dispatch = createEventDispatcher();
     let offset = { x: 0, y: 0 }
@@ -41,17 +40,17 @@
         }
         // move 100 levels above it's current z-index to ensure we catch click events
         element.style.zIndex = ((parseInt(element.style.zIndex) || 0) + 100).toString();
-        listener = listener || subscribe(
-                (topic || TOPICS.DRAG_AREA.MOVE),
-                ({x, y}) => update(x, y)
-        );
+        unsubscribe = unsubscribe || movePosition.subscribe(movement => {
+            update(movement.x, movement.y);
+        })
     };
 
     const putDown = () => {
         element.style.zIndex = ((parseInt(element.style.zIndex) || 100) - 100).toString();
 
-        if (listener && listener.remove) {
-            listener = listener.remove();
+        if (unsubscribe) {
+            unsubscribe();
+            unsubscribe = undefined;
         }
 
         let normalized = normalize && typeof normalize === 'function'
