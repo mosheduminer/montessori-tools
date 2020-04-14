@@ -2,6 +2,7 @@
     import Dragable from '../library/Dragable.svelte'
 
     export let dark = false;
+    export let number;
 </script>
 
 <style>
@@ -15,6 +16,7 @@
         align-items: center;
         padding: 12px;
         user-select: none;
+        border: 1px solid;
     }
 
     :global(.number-card-light) {
@@ -27,5 +29,5 @@
 </style>
 
 <Dragable {...$$restProps} class="number-card-{dark ? 'dark' : 'light'}" on:moved>
-    <slot />
+    {number}
 </Dragable>

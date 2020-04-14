@@ -9,25 +9,31 @@
     export let topic = TOPICS.DRAG_AREA.MOVE;
     export let normalize = undefined;
     export let validate = undefined;
+    export let disabled = false;
 
     let element;
     let listener;
     let coords;
     const dispatch = createEventDispatcher();
     let offset = { x: 0, y: 0 };
-    let pickedUp = false;
+    export let pickedUp = false;
 
     onMount(() => {
-        let rect = element.getBoundingClientRect();
+        if (disabled) return;
+
         let initialPos = {
             x: x || offset.x,
             y: y || offset.y
         };
         coords = spring(initialPos, {stiffness: 1, damping: 0.8});
+
+        if (pickedUp) {
+            pickUp();
+        }
     });
 
     const update = (x, y) => {
-        const rect = element.getBoundingClientRect();
+        if (disabled) return;
         coords.set({
             x: x - offset.x,
             y: y - offset.y
@@ -35,10 +41,11 @@
     };
 
     const pickUp = (e) => {
+        if (disabled) return;
         const rect = element.getBoundingClientRect();
         offset = {
-            x: e.offsetX || (e.targetTouches[0].pageX - rect.left),
-            y: e.offsetY || (e.targetTouches[0].pageY - rect.top)
+            x: e ? e.offsetX || (e.targetTouches[0].pageX - rect.left) : rect.width / 2,
+            y: e ? e.offsetY || (e.targetTouches[0].pageY - rect.top) : rect.height / 2
         };
         // move 100 levels above it's current z-index to ensure we catch click events
         element.style.zIndex = ((parseInt(element.style.zIndex) || 0) + 100).toString();
@@ -50,6 +57,7 @@
     };
 
     const putDown = () => {
+        if (disabled) return;
         element.style.zIndex = ((parseInt(element.style.zIndex) || 100) - 100).toString();
 
         if (listener && listener.remove) {
@@ -77,7 +85,7 @@
 </script>
 
 <style>
-    div {
+    div.dragable {
         position: absolute;
     }
 </style>
@@ -89,6 +97,9 @@
     on:mouseup={putDown}
     on:touchstart={pickUp}
     on:touchend={putDown}
-    style="left: {$coords && $coords.x + 'px'}; top: {$coords && $coords.y + 'px'}; cursor: {pickedUp ? 'grabbing' : 'grab'}">
+    class:dragable={!disabled}
+    style="left: {$coords && $coords.x + 'px'};
+        top: {$coords && $coords.y + 'px'};
+        cursor: {disabled ? 'auto' : pickedUp ? 'grabbing' : 'grab'}">
     <slot />
 </div>
