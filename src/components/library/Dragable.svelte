@@ -3,18 +3,19 @@
     import { createEventDispatcher, onMount } from 'svelte';
     import { subscribe, TOPICS } from '../../lib/pubsub';
 
-    export let x;
-    export let y;
-    export let index;
-    export let topic;
-    export let normalize;
-    export let validate;
+    export let x = undefined;
+    export let y = undefined;
+    export let index = undefined;
+    export let topic = TOPICS.DRAG_AREA.MOVE;
+    export let normalize = undefined;
+    export let validate = undefined;
 
     let element;
     let listener;
     let coords;
     const dispatch = createEventDispatcher();
-    let offset = { x: 0, y: 0 }
+    let offset = { x: 0, y: 0 };
+    let pickedUp = false;
 
     onMount(() => {
         let rect = element.getBoundingClientRect();
@@ -34,17 +35,18 @@
     };
 
     const pickUp = (e) => {
-        var rect = element.getBoundingClientRect();
+        const rect = element.getBoundingClientRect();
         offset = {
             x: e.offsetX || (e.targetTouches[0].pageX - rect.left),
             y: e.offsetY || (e.targetTouches[0].pageY - rect.top)
-        }
+        };
         // move 100 levels above it's current z-index to ensure we catch click events
         element.style.zIndex = ((parseInt(element.style.zIndex) || 0) + 100).toString();
         listener = listener || subscribe(
                 (topic || TOPICS.DRAG_AREA.MOVE),
                 ({x, y}) => update(x, y)
         );
+        pickedUp = true;
     };
 
     const putDown = () => {
@@ -69,11 +71,15 @@
         } else {
             dispatch('moved', data);
         }
+
+        pickedUp = false;
     }
 </script>
 
 <style>
-    div { position: absolute; }
+    div {
+        position: absolute;
+    }
 </style>
 
 <div
@@ -83,6 +89,6 @@
     on:mouseup={putDown}
     on:touchstart={pickUp}
     on:touchend={putDown}
-    style="left: {$coords && $coords.x + 'px'}; top: {$coords && $coords.y + 'px'};">
+    style="left: {$coords && $coords.x + 'px'}; top: {$coords && $coords.y + 'px'}; cursor: {pickedUp ? 'grabbing' : 'grab'}">
     <slot />
 </div>

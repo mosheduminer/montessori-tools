@@ -1,7 +1,7 @@
 <script>
     import { publish, TOPICS } from '../../lib/pubsub';
 
-    export let topic;
+    export let topic = TOPICS.DRAG_AREA.MOVE;
 
     const update = (x, y) => {
         publish(topic || TOPICS.DRAG_AREA.MOVE, { x, y });
