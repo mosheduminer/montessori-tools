@@ -33,7 +33,7 @@
         overflow: hidden;
     }
 
-    @media (max-width: 1680px) {
+    /* @media (max-width: 1680px) {
         :global(.bead) {
             max-width: 144px;
             height: auto;
@@ -52,7 +52,7 @@
         :global(.bead) {
             max-width: 90px;
         }
-    }
+    } */
 
     .bead-cell {
         display: inline-block;

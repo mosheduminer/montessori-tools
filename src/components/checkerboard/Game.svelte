@@ -39,25 +39,41 @@
     #selector {
         margin-top: 50px;
         display: flex;
+        align-items: flex-start;
     }
 
     #selector > div {
-        display: inline-block;
+        margin: 0 7px;
+        box-shadow: 1px 4px 10px rgba(0, 0, 0, .5);
     }
 
     #number-rows .numbers-row {
-        padding: 10px;
         background: #ffdab9;
         border: 1px solid;
+        display: grid;
+        grid-template-columns: repeat( auto-fit, minmax(48px, 1fr) );
+        width: 285px; /* 570 / 2 */
+        gap: 10px;
+        padding: 10px;
     }
 
-    :global(#number-rows .numbers-row > div:not(:last-child))
-    {
-        margin-right: 10px;
+    #selector > #bead-box {
+        width: 570px;
+        display: flex;
+        flex-wrap: wrap;
     }
 
-    :global(#bead-box > div) {
-        display: block;
+    :global(#selector > #bead-box > div) {
+        padding: 15px;
+        background: #ffdab9;
+        border: 1px solid;
+        flex-grow: 1;
+        display: inline-flex;
+        justify-content: center;
+    }
+
+    @media (min-width: 1500px) {
+        #number-rows .numbers-row { width: 570px; }
     }
 
 </style>
