@@ -1,7 +1,7 @@
 <script>
     import { spring } from 'svelte/motion';
     import { createEventDispatcher, onMount } from 'svelte';
-    import { subscribe, TOPICS } from '../../lib/pubsub';
+    import { movePosition } from "./stores";
 
     export let x = undefined;
     export let y = undefined;
@@ -12,7 +12,7 @@
     export let disabled = false;
 
     let element;
-    let listener;
+    let unsubscribe;
     let coords;
     const dispatch = createEventDispatcher();
     let offset = { x: 0, y: 0 };
@@ -60,8 +60,9 @@
         if (disabled) return;
         element.style.zIndex = ((parseInt(element.style.zIndex) || 100) - 100).toString();
 
-        if (listener && listener.remove) {
-            listener = listener.remove();
+        if (unsubscribe) {
+            unsubscribe();
+            unsubscribe = undefined;
         }
 
         let normalized = normalize && typeof normalize === 'function'
