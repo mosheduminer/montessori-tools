@@ -85,7 +85,7 @@
 </script>
 
 <style>
-    div.dragable {
+    div.draggable {
         position: absolute;
     }
 </style>
@@ -97,7 +97,7 @@
     on:mouseup={putDown}
     on:touchstart={pickUp}
     on:touchend={putDown}
-    class:dragable={!disabled}
+    class:draggable={!disabled}
     style="left: {$coords && $coords.x + 'px'};
         top: {$coords && $coords.y + 'px'};
         cursor: {disabled ? 'auto' : pickedUp ? 'grabbing' : 'grab'}">

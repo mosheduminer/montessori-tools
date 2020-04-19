@@ -1,5 +1,5 @@
 <script>
-    import Dragable from "../library/Dragable.svelte";
+    import Draggable from "../library/Draggable.svelte";
 
     export let size;
 
@@ -74,8 +74,8 @@
     .bead-dark-blue { background-color: darkblue; }
 </style>
 
-<Dragable {...$$restProps} class="bead bead-{validSize} bead-{color}" on:moved>
+<Draggable {...$$restProps} class="bead bead-{validSize} bead-{color}" on:moved>
     {#each Array(validSize) as i}
         <span class="bead-cell bead-{color}"></span>
     {/each}
-</Dragable>
+</Draggable>

@@ -1,5 +1,5 @@
 <script>
-    import Dragable from '../library/Dragable.svelte'
+    import Draggable from '../library/Draggable.svelte'
 
     export let dark = false;
     export let number;
@@ -28,6 +28,6 @@
     }
 </style>
 
-<Dragable {...$$restProps} class="number-card-{dark ? 'dark' : 'light'}" on:moved>
+<Draggable {...$$restProps} class="number-card-{dark ? 'dark' : 'light'}" on:moved>
     {number}
-</Dragable>
+</Draggable>
