@@ -26,9 +26,6 @@
 </script>
 
 <style>
-    :global(body) {
-        background: url(/img/table-top.jpg);
-    }
     :global(main) {
         background: none !important;
     }
@@ -36,6 +33,7 @@
         height: 100vh;
         width: 100vw;
         overflow: auto;
+        background: url(/img/table-top.jpg);
     }
 
     #selector {
