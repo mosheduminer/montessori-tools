@@ -148,11 +148,13 @@
 				<span>Dot Game</span>
 			</a>
 		</li>
+		<!--
 		<li>
 			<a href="/checkerboard" id="checkerboard">
 				<span>Checkerboard</span>
 			</a>
 		</li>
+		-->
 	</ul>
 
 	<h3>And more on the way!</h3>
