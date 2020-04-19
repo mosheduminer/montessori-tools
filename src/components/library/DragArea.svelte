@@ -4,7 +4,7 @@
     export let topic = TOPICS.DRAG_AREA.MOVE;
 
     const update = (x, y) => {
-        movePosition.set({x, y});
+        publish(topic, {x, y});
     }
 </script>
 

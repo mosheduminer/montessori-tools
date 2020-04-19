@@ -1,7 +1,7 @@
 <script>
     import { spring } from 'svelte/motion';
     import { createEventDispatcher, onMount } from 'svelte';
-    import { movePosition } from "./stores";
+    import { TOPICS } from "../../lib/pubsub";
 
     export let x = undefined;
     export let y = undefined;
