@@ -1,5 +1,7 @@
 <script>
-    import { movePosition } from "./stores";
+    import { publish, TOPICS } from '../../lib/pubsub';
+
+    export let topic = TOPICS.DRAG_AREA.MOVE;
 
     const update = (x, y) => {
         movePosition.set({x, y});
