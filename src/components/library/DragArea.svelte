@@ -1,5 +1,5 @@
 <script>
-    import { movePosition } from "./stores";
+    import { TOPICS, publish } from "../../lib/pubsub";
 
     const update = (x, y) => {
         publish(topic, {x, y});
