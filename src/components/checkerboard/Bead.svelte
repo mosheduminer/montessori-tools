@@ -33,27 +33,6 @@
         overflow: hidden;
     }
 
-    @media (max-width: 1680px) {
-        :global(.bead) {
-            max-width: 144px;
-            height: auto;
-            line-height: 1;
-            overflow: hidden;
-        }
-    }
-
-    @media (max-width: 1500px) {
-        :global(.bead) {
-            max-width: 126px;
-        }
-    }
-
-    @media (max-width: 1325px) {
-        :global(.bead) {
-            max-width: 90px;
-        }
-    }
-
     .bead-cell {
         display: inline-block;
         width: 16px;
