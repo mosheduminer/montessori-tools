@@ -16,7 +16,11 @@
     let coords;
     const dispatch = createEventDispatcher();
     let offset = { x: 0, y: 0 };
-    export let pickedUp = false;
+
+    export let startPickedUp = false;
+    let startPickedUpTimeout = setTimeout(putDown, 500);
+
+    let pickedUp;
 
     onMount(() => {
         if (disabled) return;
@@ -27,7 +31,7 @@
         };
         coords = spring(initialPos, {stiffness: 1, damping: 0.8});
 
-        if (pickedUp) {
+        if (startPickedUp) {
             pickUp();
         }
     });
@@ -38,10 +42,16 @@
             x: x - offset.x,
             y: y - offset.y
         });
+
+        if (startPickedUp) {
+            clearTimeout(startPickedUpTimeout);
+            startPickedUpTimeout = setTimeout(putDown, 500);
+        }
     };
 
     const pickUp = (e) => {
         if (disabled) return;
+
         const rect = element.getBoundingClientRect();
         offset = {
             x: e ? e.offsetX || (e.targetTouches[0].pageX - rect.left) : rect.width / 2,
@@ -56,8 +66,9 @@
         pickedUp = true;
     };
 
-    const putDown = () => {
+    var putDown = () => {
         if (disabled) return;
+
         element.style.zIndex = ((parseInt(element.style.zIndex) || 100) - 100).toString();
 
         if (listener && listener.remove) {
@@ -75,6 +86,7 @@
         };
 
         if (validate && typeof validate === 'function' && !validate(data)) {
+            console.log('validateFailed');
             coords.set({x, y});
         } else {
             dispatch('moved', data);
@@ -98,6 +110,7 @@
     on:touchstart={pickUp}
     on:touchend={putDown}
     class:draggable={!disabled}
+    class:pickedUp={pickedUp}
     style="left: {$coords && $coords.x + 'px'};
         top: {$coords && $coords.y + 'px'};
         cursor: {disabled ? 'auto' : pickedUp ? 'grabbing' : 'grab'}">

@@ -3,21 +3,23 @@
 
     export let topic = TOPICS.DRAG_AREA.MOVE;
 
+    let element;
     const update = (x, y) => {
-        publish(topic || TOPICS.DRAG_AREA.MOVE, { x, y });
+        publish(topic || TOPICS.DRAG_AREA.MOVE, { x: x + element.scrollLeft, y: y + element.scrollTop });
     }
 </script>
 
 <style>
     div {
         position: relative;
-        overflow: hidden;
         width: 100%;
         height: 100%;
+        overflow: auto;
     }
 </style>
 
 <div
+    bind:this={element}
     {...$$restProps}
     on:mousemove="{e => update(e.clientX, e.clientY)}"
     on:touchmove|preventDefault={e => update(

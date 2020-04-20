@@ -26,6 +26,13 @@
     :global(.number-card-dark) {
         background-color: #bbb;
     }
+
+    @media (max-width: 1325px) {
+        :global(.number-card-light, .number-card-dark) {
+            width: 18px;
+            height: 18px;
+        }
+    }
 </style>
 
 <Draggable {...$$restProps} class="number-card-{dark ? 'dark' : 'light'}" on:moved>

@@ -34,22 +34,22 @@
 
     @media (max-width: 1680px) {
         .column {
-            height: 150px;
-            width: 150px;
+            height: 152px;
+            width: 152px;
         }
     }
 
     @media (max-width: 1500px) {
         .column {
-            height: 130px;
-            width: 130px;
+            height: 125px;
+            width: 141px;
         }
     }
 
     @media (max-width: 1325px) {
         .column {
-            height: 100px;
-            width: 100px;
+            height: 104px;
+            width: 103.02px;
         }
     }
 
@@ -63,9 +63,9 @@
         border: 2px solid #ababab;
     }
 
-    .column-red { background-color: #f75e5e; }
-    .column-blue { background-color: #7575e4; }
-    .column-green { background-color: #5edc5e; }
+    .column-red { background-color: rgb(235, 72, 72); }
+    .column-blue { background-color: rgb(72, 72, 235); }
+    .column-green { background-color: rgb(72, 235, 72); }
 </style>
 
 <table id="grid">
