@@ -18,8 +18,6 @@
     let offset = { x: 0, y: 0 };
 
     export let startPickedUp = false;
-    let startPickedUpTimeout = setTimeout(putDown, 500);
-
     let pickedUp;
 
     onMount(() => {
@@ -94,6 +92,8 @@
 
         pickedUp = false;
     }
+
+    let startPickedUpTimeout = setTimeout(putDown, 500);
 </script>
 
 <style>
