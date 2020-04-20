@@ -1,10 +1,7 @@
 <script>
-    export let vertical = 4;
-    export let horizontal = 9;
-
     let rows, columns;
-    $: rows = [ ...Array(vertical).keys()].map(i => 10 ** i).reverse();
-    $: columns = [ ...Array(horizontal).keys()].map(i => 10 ** i).reverse();
+    $: rows = [ ...Array(4).keys()].map(i => 10 ** i).reverse();
+    $: columns = [ ...Array(9).keys()].map(i => 10 ** i).reverse();
 
     const colors = ['green', 'blue', 'red'];
     const getColor = (row, column) => {
@@ -22,41 +19,53 @@
 </script>
 
 <style>
-    table {
-        border-collapse: collapse;
+    #grid {
         min-width: 975px;
+        display: grid;
+        grid-template-columns: repeat(9, minmax(104px, 1fr)) 58px;
+        max-width: 1620px;
+        margin: 0 auto;
+    }
+
+    .row {
+        display: flex;
+        width: 100%;
     }
 
     .column {
         height: 170px;
-        width: 170px;
+        min-width: 170px;
+        flex-grow: 1;
     }
 
     @media (max-width: 1680px) {
         .column {
             height: 152px;
-            width: 152px;
+            min-width: 152px;
         }
     }
 
     @media (max-width: 1500px) {
         .column {
             height: 125px;
-            width: 141px;
+            min-width: 141px;
         }
     }
 
     @media (max-width: 1325px) {
         .column {
             height: 104px;
-            width: 103.02px;
+            min-width: 103.02px;
         }
     }
 
     .header {
         background: peachpuff;
-        text-align: center;
         user-select: none;
+        min-width: 3em;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .column, .header {
@@ -68,19 +77,15 @@
     .column-green { background-color: rgb(72, 235, 72); }
 </style>
 
-<table id="grid">
+<div id="grid">
     {#each rows as row}
-        <tr class="row">
-            {#each columns as column}
-                <td class="column column-{getColor(row, column)}"></td>
-            {/each}
-            <td class="header">{formatNumber(row)}</td>
-        </tr>
+    {#each columns as column}
+        <div class="column column-{getColor(row, column)}" />
     {/each}
-    <tr style="height: 2em; vertical-align: top;">
-        {#each columns as column}
-            <td class="header">{formatNumber(column)}</td>
-        {/each}
-        <td class="header"></td>
-    </tr>
-</table>
+    <div class="header">{formatNumber(row)}</div>
+    {/each}
+    {#each columns as column}
+        <div class="header">{formatNumber(column)}</div>
+    {/each}
+    <div class="header"></div>
+</div>

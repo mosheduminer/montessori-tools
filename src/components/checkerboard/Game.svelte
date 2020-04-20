@@ -16,8 +16,7 @@
     let positions = {};
     let section, latest;
 
-    let trash, trashRect;
-    $: trashRect = trash && trash.getBoundingClientRect();
+    let trash;
 
     const onSpawn = (event) => {
         const {component, data} = event.detail;
@@ -31,6 +30,7 @@
     }
 
     const emptyTrash = () => {
+        const trashRect = trash.getBoundingClientRect();
         var ids = Object.entries(positions)
             .filter(pos => pos[1].x >= trashRect.left
                 && pos[1].x <= trashRect.right
@@ -52,7 +52,7 @@
     }
 
     #selector {
-        margin: 15px;
+        margin: 0 auto;
         margin-top: 50px;
         margin-bottom: 10px;
         display: flex;
