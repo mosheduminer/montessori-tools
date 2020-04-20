@@ -6,7 +6,6 @@
 
 <style>
   main {
-    background-color: white;
     padding: 0em;
     margin: 0 auto;
     box-sizing: border-box;

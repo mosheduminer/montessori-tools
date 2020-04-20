@@ -2,7 +2,7 @@
   export let segment;
 
   let frontPages = [undefined]; // undefined represents the home page
-  let onBottom = ["dot-game"];
+  let onBottom = ["dot-game", "checkerboard"];
 </script>
 
 <style>
@@ -19,8 +19,8 @@
   }
 
   nav.bottom-right {
-    bottom: 10px;
-    right: 10px;
+    bottom: 20px;
+    right: 20px;
   }
 
   ul {

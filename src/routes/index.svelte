@@ -148,7 +148,7 @@
 				<span>Dot Game</span>
 			</a>
 		</li>
-		<li style="display: none;">
+		<li>
 			<a href="/checkerboard" id="checkerboard">
 				<span>Checkerboard</span>
 			</a>
