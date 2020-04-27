@@ -153,6 +153,11 @@
 				<span>Checkerboard</span>
 			</a>
 		</li>
+		<li>
+			<a href="/fractions" id="fractions">
+				<span>Fractions</span>
+			</a>
+		</li>
 	</ul>
 
 	<h3>And more on the way!</h3>

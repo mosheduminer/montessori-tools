@@ -56,7 +56,7 @@
             y: e ? e.offsetY || (e.targetTouches[0].pageY - rect.top) : rect.height / 2
         };
         // move 100 levels above it's current z-index to ensure we catch click events
-        element.style.zIndex = ((parseInt(element.style.zIndex) || 0) + 100).toString();
+        element && (element.style.zIndex = ((parseInt(element.style.zIndex) || 0) + 100).toString());
         listener = listener || subscribe(
                 (topic || TOPICS.DRAG_AREA.MOVE),
                 ({x, y}) => update(x, y)
@@ -67,7 +67,7 @@
     var putDown = () => {
         if (disabled) return;
 
-        element.style.zIndex = ((parseInt(element.style.zIndex) || 100) - 100).toString();
+        element && (element.style.zIndex = ((parseInt(element.style.zIndex) || 100) - 100).toString());
 
         if (listener && listener.remove) {
             listener = listener.remove();
@@ -75,7 +75,7 @@
 
         let normalized = normalize && typeof normalize === 'function'
             ? normalize($coords.x, $coords.y)
-            : { x: $coords.x, y: $coords.y };
+            : { x: $coords ? $coords.x : 0, y: $coords ? $coords.y : 0 };
 
         const data = {
             index,
