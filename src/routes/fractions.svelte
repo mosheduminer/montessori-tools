@@ -1,6 +1,9 @@
 <script>
   import Slice from "../components/fractions/Slice.svelte";
   import DragArea from '../components/library/DragArea.svelte';
+
+  let fraction = 3;
+  let offset = 0;
 </script>
 
 <svelte:head>
@@ -16,13 +19,6 @@ div#fractions {
     min-width: 100vw;
 }
 
-/* img {
-    position: absolute;
-    width: 356px;
-    top: -44px;
-    left: -27px;
-} */
-
 :global(div#fractions .container > div) {
     position: absolute;
 }
@@ -30,11 +26,8 @@ div#fractions {
 
 <div id="fractions">
     <DragArea>
-        <Slice fraction={6} number={1} />
-        <Slice fraction={6} number={2} />
-        <Slice fraction={6} number={3} />
-        <Slice fraction={6} number={4} />
-        <Slice fraction={6} number={5} />
-        <Slice fraction={6} number={6} />
+        <Slice fraction={1 / fraction} offset={offset} />
+        <input type="number" bind:value={fraction} />
+        <input type="number" bind:value={offset} />
     </DragArea>
 </div>
