@@ -27,13 +27,13 @@
 
         // 3 parts of SVG path
         let pathData = [
-            `M ${startX} ${startY}`, // Move
-            `A 1 1 0 ${largeArcFlag} 1 ${endX} ${endY}`, // Arc
+            `M ${(startX / 2) + 0.5} ${(startY + 1) / 2}`, // Move
+            `A 0.5 0.5 0 ${largeArcFlag} 1 ${(endX / 2) + 0.5} ${(endY + 1) / 2}`, // Arc
         ].join(' ');
 
         if (fraction < 1) {
             pathData += [
-                `L 0 0`, // Line
+                `L 0.5 0.5`, // Line
                 `z`,
             ].join(' ');
         }
@@ -57,14 +57,14 @@
 
 <svg width="0" height="0">
     <defs>
-        <clipPath id="my-shape">
+        <clipPath id="my-shape" clipPathUnits="objectBoundingBox">
             <path d="{pathData}">
             </path>
         </clipPath>
     </defs>
 </svg>
 
-<svg viewBox="-1 -1 2 2.01" height="500" width="500">
+<svg viewBox="0 0 1 1.01" height="500" width="500">
     <path d="{pathData}"
           fill="Coral"
           stroke="#000000"
