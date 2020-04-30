@@ -10,6 +10,7 @@
     export let normalize = undefined;
     export let validate = undefined;
     export let disabled = false;
+    export let style = "";
 
     let element;
     let listener;
@@ -91,7 +92,7 @@
         }
 
         pickedUp = false;
-    }
+    };
 
     let startPickedUpTimeout = setTimeout(putDown, 500);
 </script>
@@ -113,6 +114,7 @@
     class:pickedUp={pickedUp}
     style="left: {$coords && $coords.x + 'px'};
         top: {$coords && $coords.y + 'px'};
-        cursor: {disabled ? 'auto' : pickedUp ? 'grabbing' : 'grab'}">
+        cursor: {disabled ? 'auto' : pickedUp ? 'grabbing' : 'grab'};
+        {style}">
     <slot />
 </div>
