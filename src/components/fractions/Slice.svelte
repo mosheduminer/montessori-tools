@@ -1,75 +1,54 @@
 <script>
+    import Guid from '../../lib/guid';
     import Draggable from "../library/Draggable.svelte";
+    import {getPath} from './path';
 
     export let fraction = 1;
     export let offset = 0;
+    export let svgId = undefined;
 
-    let svg;
+    const id = Guid();
 
-    // math to get Coordinates from a fraction
-    // https://medium.com/hackernoon/a-simple-pie-chart-in-svg-dbdd653b6936
-    function getCoordinatesForPercent(percent) {
-        const x = Math.cos(2 * Math.PI * percent);
-        const y = Math.sin(2 * Math.PI * percent);
-        return [x, y];
-    }
-
-    function getPath(fraction, offset) {
-        console.log({fraction, offset});
-        const finalOffset = (fraction * offset) - .25; // svg's start at 3:00 not 12:00
-
-        // get the starting and ending position of the path
-        const [startX, startY] = getCoordinatesForPercent(finalOffset);
-        const [endX, endY] = getCoordinatesForPercent(finalOffset + fraction);
-
-        // handle SVG path bug
-        const largeArcFlag = fraction > .5 ? 1 : 0;
-
-        // 3 parts of SVG path
-        let pathData = [
-            `M ${(startX / 2) + 0.5} ${(startY + 1) / 2}`, // Move
-            `A 0.5 0.5 0 ${largeArcFlag} 1 ${(endX / 2) + 0.5} ${(endY + 1) / 2}`, // Arc
-        ].join(' ');
-
-        if (fraction < 1) {
-            pathData += [
-                `L 0.5 0.5`, // Line
-                `z`,
-            ].join(' ');
-        }
-
-        return pathData;
-    }
-
-    let pathData;
+    let pathData, pathId;
     $: pathData = getPath(fraction, offset);
+    $: pathId = fraction === 1 ? 'circle(50%)' : `url(#${svgId || id})`;
 </script>
 
 <style>
-    .clipped {
-        background: red;
-        height: 100px;
-        width: 100px;
-        -webkit-clip-path: url(#my-shape);
-        clip-path: url(#my-shape);
+    :global(.fraction-slice) {
+        position: absolute;
+        background: radial-gradient(circle at 50% 50%, rgb(235, 72, 72), rgb(194, 92, 92) 66%);
+        border-radius: 50%;
+        border: 1px solid #000;
+        box-sizing: border-box;
+    }
+
+    svg.hidden-svg {
+        position: absolute;
+        z-index: -99999999999;
+    }
+
+    :global(.fraction-slice svg) {
+        margin: -1px;
     }
 </style>
 
-<svg width="0" height="0">
-    <defs>
-        <clipPath id="my-shape" clipPathUnits="objectBoundingBox">
-            <path d="{pathData}">
-            </path>
-        </clipPath>
-    </defs>
-</svg>
+{#if svgId === undefined && fraction !== 1}
+    <svg width="0" height="0" class="hidden-svg">
+        <defs>
+            <clipPath id={id} clipPathUnits="objectBoundingBox">
+                <path d="{pathData}">
+                </path>
+            </clipPath>
+        </defs>
+    </svg>
+{/if}
 
-<svg viewBox="0 0 1 1.01" height="500" width="500">
-    <path d="{pathData}"
-          fill="Coral"
-          stroke="#000000"
-          stroke-width="0.01"
-          stroke-miterlimit="10" />
-</svg>
-<div class="clipped" src="img/peg-board.png" alt="" />
-<!--<Draggable {...$$restProps} class="fraction-slice fraction-{fraction} fraction-number-{number}" on:moved />-->
+<Draggable {...$$restProps}
+           class="fraction-slice fraction-size"
+           style="clip-path: {pathId};"
+           on:moved>
+    <svg viewBox="0 0 1 1.01">
+        <path d="{pathData}" stroke="#000" stroke-width="0.02" fill="rgba(0, 0, 0, 0)"></path>
+    </svg>
+</Draggable>

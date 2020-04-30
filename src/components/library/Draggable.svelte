@@ -2,6 +2,7 @@
     import { spring } from 'svelte/motion';
     import { createEventDispatcher, onMount } from 'svelte';
     import { subscribe, TOPICS } from '../../lib/pubsub';
+    import { getOffset } from '../../lib/utils';
 
     export let x = undefined;
     export let y = undefined;
@@ -19,6 +20,8 @@
     let offset = { x: 0, y: 0 };
 
     export let startPickedUp = false;
+    export let startOffset = undefined;
+
     let pickedUp;
 
     onMount(() => {
@@ -31,7 +34,8 @@
         coords = spring(initialPos, {stiffness: 1, damping: 0.8});
 
         if (startPickedUp) {
-            pickUp();
+            offset = startOffset || offset;
+            pickUp(undefined, true);
         }
     });
 
@@ -48,14 +52,15 @@
         }
     };
 
-    const pickUp = (e) => {
+    const pickUp = (e, useStartOffset) => {
         if (disabled) return;
 
         const rect = element.getBoundingClientRect();
-        offset = {
-            x: e ? e.offsetX || (e.targetTouches[0].pageX - rect.left) : rect.width / 2,
-            y: e ? e.offsetY || (e.targetTouches[0].pageY - rect.top) : rect.height / 2
-        };
+        if (!useStartOffset) {
+            // TODO: Fix FireFox
+            offset = getOffset(e, rect)
+        }
+
         // move 100 levels above it's current z-index to ensure we catch click events
         element && (element.style.zIndex = ((parseInt(element.style.zIndex) || 0) + 100).toString());
         listener = listener || subscribe(
@@ -92,6 +97,7 @@
         }
 
         pickedUp = false;
+        startPickedUp = false;
     };
 
     let startPickedUpTimeout = setTimeout(putDown, 500);
