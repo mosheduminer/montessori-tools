@@ -76,6 +76,7 @@
         border-bottom: 5px solid #945722;
         justify-content: center;
         align-items: center;
+        margin-bottom: 40vh;
     }
     :global(div#fractions #drawer > *:not(:last-child)) {
         margin-right: 15px;

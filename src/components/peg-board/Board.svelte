@@ -24,7 +24,6 @@
   let pegs = [ ...initialPegs.map(p => ({ ...p, id: getId()})) ];
 
   const movePeg = ({ color, from, to }) => {
-    console.log({ from, to, pegs: [...pegs], color });
     const peg = pegs[from.index];
     let success = true;
 
@@ -47,7 +46,6 @@
       pegs = pegs.map(p => p.id === peg.id ? { color, x: to.x, y: to.y, id: peg.id } : p);
     }
 
-    console.log({ success, pegs: [...pegs], color });
     return success;
   }
 </script>

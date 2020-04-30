@@ -71,6 +71,7 @@
                 ({x, y}) => update(x, y)
         );
         pickedUp = true;
+        pickupAudio && (pickupAudio.volume = 0.2);
         pickupAudio && pickupAudio.play();
     };
 
@@ -94,7 +95,6 @@
         };
 
         if (validate && typeof validate === 'function' && !validate(data)) {
-            console.log('validateFailed');
             coords.set({x, y});
         } else {
             dispatch('moved', data);
@@ -102,6 +102,7 @@
 
         pickedUp = false;
         startPickedUp = false;
+        putdownAudio && (putdownAudio.volume = 0.2);
         putdownAudio && putdownAudio.play();
     };
 

@@ -80,6 +80,10 @@
 		background-image: url("/img/checkerboard.jpg");
 	}
 
+	a#fractions {
+		background-image: url("/img/fractions.png");
+	}
+
 	ul#games-list > li > a::before {
 		content: " ";
 		display: block;

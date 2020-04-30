@@ -17,7 +17,6 @@
     const dispatch = createEventDispatcher();
     const spawn = (event) => {
         const rect = element.getBoundingClientRect();
-        console.log(event);
         dispatch('spawn', {component: Slice, data: {
             fraction, offset, svgId,
             x: rect.left,
