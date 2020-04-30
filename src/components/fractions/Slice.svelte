@@ -17,9 +17,9 @@
     $: pathId = fraction === 1 ? 'circle(50%)' : `url(#${rotation === 0 ? (svgId || id) : id})`;
 
     let lastScroll = 0;
-    const rotate = (event) => {
+    const rotate = ({detail}) => {
         if ($$restProps.disabled) return;
-        rotation += event.deltaY * .001;
+        rotation += detail.deltaY * .001;
     }
 </script>
 
