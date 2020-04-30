@@ -18,7 +18,6 @@
         y = h;
       let ratioX = lastDimensions["x"] / x,
         ratioY = lastDimensions["y"]/ y ;
-      console.log(ratioX, ratioY)
       lines = lines.map(line => {
         return line.map(point => {
           return { x: point.x * ratioX, y: point.y * ratioY };

@@ -80,6 +80,10 @@
 		background-image: url("/img/checkerboard.jpg");
 	}
 
+	a#fractions {
+		background-image: url("/img/fractions.png");
+	}
+
 	ul#games-list > li > a::before {
 		content: " ";
 		display: block;
@@ -151,6 +155,11 @@
 		<li>
 			<a href="/checkerboard" id="checkerboard">
 				<span>Checkerboard</span>
+			</a>
+		</li>
+		<li>
+			<a href="/fractions" id="fractions">
+				<span>Fractions</span>
 			</a>
 		</li>
 	</ul>

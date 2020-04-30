@@ -1,5 +1,7 @@
 <script>
     import { createEventDispatcher } from 'svelte';
+    import { getOffset } from '../../lib/utils';
+
     export let component;
     export let data;
 
@@ -7,9 +9,14 @@
 
     const dispatch = createEventDispatcher();
 
-    const spawn = () => {
+    const spawn = (event) => {
         const rect = element.getBoundingClientRect();
-        dispatch('spawn', { component, data: { x: rect.left, y: rect.top, ...data } });
+        dispatch('spawn', { component, data: {
+            x: rect.left,
+            y: rect.top,
+            startOffset: getOffset(event),
+            ...data
+        }});
     }
 </script>
 

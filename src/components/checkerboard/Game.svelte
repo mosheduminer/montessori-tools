@@ -17,6 +17,7 @@
     let section, latest;
 
     let trash;
+    const sweepAudio = typeof Audio !== 'undefined' && new Audio('/audio/sweep.mp3');
 
     const onSpawn = (event) => {
         const {component, data} = event.detail;
@@ -40,6 +41,7 @@
         
         positions = {};
         draggables = draggables.filter(item => ids.indexOf(item.id) < 0);
+        sweepAudio && sweepAudio.play();
     }
 </script>
 
