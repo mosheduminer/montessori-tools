@@ -1,30 +1,32 @@
 <script>
-  import SpawnSlice from "../components/fractions/SpawnSlice.svelte";
-  import DragArea from '../components/library/DragArea.svelte';
+    import SpawnSlice from "../components/fractions/SpawnSlice.svelte";
+    import Line from "../components/fractions/Line.svelte";
+    import DragArea from '../components/library/DragArea.svelte';
+    import NumberCard from '../components/checkerboard/NumberCard.svelte';
+    import SpawnArea from "../components/library/SpawnArea.svelte";
 
-  const sweepAudio = typeof Audio !== 'undefined' && new Audio('/audio/sweep.mp3');
-  const pickupAudio = typeof Audio !== 'undefined' && new Audio('/audio/pickup.mp3');
+    const sweepAudio = typeof Audio !== 'undefined' && new Audio('/audio/sweep.mp3');
 
-  let fractions = [ 1, 1/2, 1/3, 1/4, 1/5, 1/6, 1/7, 1/8, 1/9, 1/10 ];
+    let fractions = [1, 1 / 2, 1 / 3, 1 / 4, 1 / 5, 1 / 6, 1 / 7, 1 / 8, 1 / 9, 1 / 10];
+    let cards = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '+', '-', '×', '÷', '='];
 
-  let draggables = [];
-  let latest;
+    let draggables = [];
+    let latest;
 
-  let id = 0;
-  const getId = () => id++;
-  const onSpawn = (event) => {
-      const {component, data} = event.detail;
-      const id = getId();
-      latest = id;
-      draggables.push({ id, component, data });
-      draggables = draggables;
-      pickupAudio && pickupAudio.play();
-  };
+    let id = 0;
+    const getId = () => id++;
+    const onSpawn = (event) => {
+        const {component, data} = event.detail;
+        const id = getId();
+        latest = id;
+        draggables.push({id, component, data});
+        draggables = draggables;
+    };
 
-  const emptyTrash = () => {
-      draggables = [];
-      sweepAudio && sweepAudio.play();
-  }
+    const emptyTrash = () => {
+        draggables = [];
+        sweepAudio && sweepAudio.play();
+    }
 </script>
 
 <svelte:head>
@@ -65,6 +67,24 @@
         background: radial-gradient(circle at 50% 50%, rgb(45, 152, 37), rgb(26, 111, 26) 48%);
     }
 
+    #drawer {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 15px;
+        padding-top: 0px;
+        background: #ffdab9;
+        border-bottom: 5px solid #945722;
+        justify-content: center;
+        align-items: center;
+    }
+    :global(div#fractions #drawer > *:not(:last-child)) {
+        margin-right: 15px;
+    }
+
+    :global(div#fractions #drawer > *) {
+        margin-top: 15px;
+    }
+
     #trash {
         position: fixed;
         height: 65px;
@@ -93,7 +113,14 @@
             {/each}
         </div>
         <div id="drawer">
-
+            {#each cards as card}
+                <SpawnArea on:spawn={onSpawn} component={NumberCard} data={{number: card}}>
+                    <NumberCard disabled="{true}" number={card} />
+                </SpawnArea>
+            {/each}
+            <SpawnArea on:spawn={onSpawn} component={Line}>
+                <Line disabled={true} />
+            </SpawnArea>
         </div>
 
         <button on:click={emptyTrash} id="trash">

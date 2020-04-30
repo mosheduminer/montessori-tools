@@ -13,6 +13,9 @@
     export let disabled = false;
     export let style = "";
 
+    const pickupAudio = typeof Audio !== 'undefined' && new Audio('/audio/pickup.mp3');
+    const putdownAudio = typeof Audio !== 'undefined' && new Audio('/audio/putdown.mp3');
+
     let element;
     let listener;
     let coords;
@@ -68,6 +71,7 @@
                 ({x, y}) => update(x, y)
         );
         pickedUp = true;
+        pickupAudio && pickupAudio.play();
     };
 
     var putDown = () => {
@@ -98,6 +102,7 @@
 
         pickedUp = false;
         startPickedUp = false;
+        putdownAudio && putdownAudio.play();
     };
 
     let startPickedUpTimeout = setTimeout(putDown, 500);
