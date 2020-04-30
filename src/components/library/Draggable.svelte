@@ -122,6 +122,7 @@
     on:mouseup={putDown}
     on:touchstart={pickUp}
     on:touchend={putDown}
+    on:wheel
     class:draggable={!disabled}
     class:pickedUp={pickedUp}
     style="left: {$coords && $coords.x + 'px'};

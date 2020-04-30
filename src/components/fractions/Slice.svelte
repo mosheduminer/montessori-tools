@@ -7,11 +7,20 @@
     export let offset = 0;
     export let svgId = undefined;
 
+    let rotation = 0;
+    console.log('render slice');
+
     const id = Guid();
 
     let pathData, pathId;
-    $: pathData = getPath(fraction, offset);
-    $: pathId = fraction === 1 ? 'circle(50%)' : `url(#${svgId || id})`;
+    $: pathData = getPath(fraction, offset + rotation);
+    $: pathId = fraction === 1 ? 'circle(50%)' : `url(#${rotation === 0 ? (svgId || id) : id})`;
+
+    let lastScroll = 0;
+    const rotate = (event) => {
+        if ($$restProps.disabled) return;
+        rotation += event.deltaY * .001;
+    }
 </script>
 
 <style>
@@ -33,7 +42,7 @@
     }
 </style>
 
-{#if svgId === undefined && fraction !== 1}
+{#if (rotation === 0 || svgId === undefined && fraction) !== 1}
     <svg width="0" height="0" class="hidden-svg">
         <defs>
             <clipPath id={id} clipPathUnits="objectBoundingBox">
@@ -47,7 +56,8 @@
 <Draggable {...$$restProps}
            class="fraction-slice fraction-size"
            style="clip-path: {pathId};"
-           on:moved>
+           on:moved
+           on:wheel={rotate}>
     <svg viewBox="0 0 1 1.01">
         <path d="{pathData}" stroke="#000" stroke-width="0.02" fill="rgba(0, 0, 0, 0)"></path>
     </svg>
