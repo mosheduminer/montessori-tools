@@ -55,7 +55,7 @@
 
 <Draggable {...$$restProps}
            class="fraction-slice fraction-size"
-           style="clip-path: {pathId};"
+           style="clip-path: {pathId}; --webkit-clip-path: {pathId}"
            on:moved
            on:wheel={rotate}>
     <svg viewBox="0 0 1 1.01">

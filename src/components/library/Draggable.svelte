@@ -12,15 +12,17 @@
     export let validate = undefined;
     export let disabled = false;
     export let style = "";
+    export let rotateDegrees = 0;
 
     const pickupAudio = typeof Audio !== 'undefined' && new Audio('/audio/pickup.mp3');
     const putdownAudio = typeof Audio !== 'undefined' && new Audio('/audio/putdown.mp3');
 
-    let element;
-    let listener;
-    let coords;
+    let element, listener, coords, isRotated;
     const dispatch = createEventDispatcher();
     let offset = { x: 0, y: 0 };
+    let initialRect;
+
+    $: isRotated = rotateDegrees % 360 !== 0;
 
     export let startPickedUp = false;
     export let startOffset = undefined;
@@ -40,6 +42,8 @@
             offset = startOffset || offset;
             pickUp(undefined, true);
         }
+
+        initialRect = element.getBoundingClientRect();
     });
 
     const update = (x, y) => {
@@ -59,9 +63,17 @@
         if (disabled) return;
 
         const rect = element.getBoundingClientRect();
-        if (!useStartOffset) {
+        if (!useStartOffset && !isRotated) {
             // TODO: Fix FireFox
             offset = getOffset(e, rect)
+        } else if (isRotated) {
+            // get the diff from a straight circle
+            const widthDiff = (initialRect.width - rect.width) / 2;
+            const heightDiff = (initialRect.height - rect.height) / 2;
+
+            offset = getOffset(e, rect);
+            offset.x += widthDiff;
+            offset.y += heightDiff;
         }
 
         // move 100 levels above it's current z-index to ensure we catch click events
@@ -110,7 +122,7 @@
         if (!pickedUp) {
             dispatch('wheel', event);
         }
-    }
+    };
 
     let startPickedUpTimeout = setTimeout(putDown, 500);
 </script>
@@ -134,6 +146,7 @@
     style="left: {$coords && $coords.x + 'px'};
         top: {$coords && $coords.y + 'px'};
         cursor: {disabled ? 'auto' : pickedUp ? 'grabbing' : 'grab'};
+        transform: rotate({rotateDegrees}deg);
         {style}">
     <slot />
 </div>

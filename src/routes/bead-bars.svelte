@@ -176,7 +176,7 @@
 
             <div id="bead-box">
                 {#each [ ...Array(9).keys() ] as bead}
-                    <SpawnArea on:spawn={onSpawn} component={Bead} data={{dark: true, size: bead + 1, fullSize: true}}>
+                    <SpawnArea on:spawn={onSpawn} component={Bead} data={{dark: true, size: bead + 1, fullSize: true, shouldRotate: true}}>
                         <Bead size="{bead + 1}" on:moved={onMoved} disabled={true} fullSize={true}/>
                     </SpawnArea>
                 {/each}

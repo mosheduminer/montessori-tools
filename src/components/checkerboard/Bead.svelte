@@ -3,6 +3,7 @@
 
     export let size;
     export let fullSize = false;
+    export let shouldRotate = false;
 
     // color of beads determined by their size
     const colors = [
@@ -25,6 +26,12 @@
 
     let color;
     $: color = colors[validSize - 1];
+
+    let rotationDegrees = 0;
+    const rotate = ({detail}) => {
+        if ($$restProps.disabled || !shouldRotate) return;
+        rotationDegrees += detail.deltaY * .1;
+    }
 </script>
 
 <style>
@@ -33,6 +40,7 @@
         height: auto;
         overflow: hidden;
         display: inline-flex;
+        transition: transform .1s ease-in-out;
     }
 
     .bead-cell {
@@ -67,7 +75,11 @@
     .bead-dark-blue { background-color: darkblue; }
 </style>
 
-<Draggable {...$$restProps} class="bead bead-{validSize} bead-{color}" on:moved>
+<Draggable {...$$restProps}
+           class="bead bead-{validSize} bead-{color}"
+           on:moved
+           on:wheel={rotate}
+           bind:rotateDegrees={rotationDegrees}>
     {#each Array(validSize) as i}
         <span class="bead-cell bead-{validSize} bead-{color}" class:full-size={fullSize}></span>
     {/each}
