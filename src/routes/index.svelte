@@ -68,21 +68,11 @@
 		transition: all .5s;
 	}
 
-	a#peg-board {
-		background-image: url("/img/peg-board.png");
-	}
-
-	a#dot-game {
-		background-image: url("/img/dot-game.jpg");
-	}
-
-	a#checkerboard {
-		background-image: url("/img/checkerboard.jpg");
-	}
-
-	a#fractions {
-		background-image: url("/img/fractions.png");
-	}
+	a#peg-board { background-image: url("/img/peg-board.png"); }
+	a#dot-game { background-image: url("/img/dot-game.jpg"); }
+	a#checkerboard { background-image: url("/img/checkerboard.jpg"); }
+	a#fractions { background-image: url("/img/fractions.png"); }
+	a#bead-bars { background-image: url("/img/bead-bars.png"); }
 
 	ul#games-list > li > a::before {
 		content: " ";
