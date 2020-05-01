@@ -14,7 +14,6 @@
         dispatch('spawn', { component, data: {
             x: rect.left,
             y: rect.top,
-            startOffset: getOffset(event),
             ...data
         }});
     }
