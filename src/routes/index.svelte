@@ -162,6 +162,11 @@
 				<span>Fractions</span>
 			</a>
 		</li>
+		<li>
+			<a href="/bead-bars" id="bead-bars">
+				<span>Bead Bars</span>
+			</a>
+		</li>
 	</ul>
 
 	<h3>And more on the way!</h3>

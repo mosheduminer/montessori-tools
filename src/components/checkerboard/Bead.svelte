@@ -2,6 +2,7 @@
     import Draggable from "../library/Draggable.svelte";
 
     export let size;
+    export let fullSize = false;
 
     // color of beads determined by their size
     const colors = [
@@ -44,19 +45,15 @@
     }
 
     @media (max-width: 1680px) {
-        .bead-cell { width: 15px; }
+        .bead-cell:not(.full-size) { width: 15px; }
     }
 
     @media (max-width: 1500px) {
-        .bead-cell { width: 12px; height: 14px; }
-        /* .bead-cell.bead-8 { width: 14px; } */
+        .bead-cell:not(.full-size) { width: 12px; height: 14px; }
     }
 
     @media (max-width: 1325px) {
-        .bead-cell { width: 9px; height: 13px; }
-        /* .bead-cell.bead-8 { width: 10px; height: 12px; }
-        .bead-cell.bead-7 { width: 12px; height: 14px; }
-        .bead-cell.bead-6 { width: 14px; } */
+        .bead-cell:not(.full-size) { width: 9px; height: 13px; }
     }
 
     .bead-red { background-color: red; }
@@ -72,6 +69,6 @@
 
 <Draggable {...$$restProps} class="bead bead-{validSize} bead-{color}" on:moved>
     {#each Array(validSize) as i}
-        <span class="bead-cell bead-{validSize} bead-{color}"></span>
+        <span class="bead-cell bead-{validSize} bead-{color}" class:full-size={fullSize}></span>
     {/each}
 </Draggable>
