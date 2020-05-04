@@ -66,7 +66,7 @@
     {/each}
     <span style="opacity: 0; flex-grow: 1;" class="bead" />
     {#each rightArr as index (index + leftArr.length)}
-        <span on:click={() => onClick(leftArr.length + index)}
+        <span on:click={() => onClick(leftArr.length + index + 1)}
             in:receive={{key: leftArr.length + index}}
             out:send={{key: leftArr.length + index}}
             style="background: {color};" class="bead" />
