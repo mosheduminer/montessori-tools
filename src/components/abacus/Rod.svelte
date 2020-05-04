@@ -40,12 +40,12 @@
             rgb(193,154,107) calc(50%),
             rgba(0,0,0,0) calc(50% + 0.25rem)
         );
-        margin-bottom: 1rem;
+        margin-bottom: 3.25rem;
     }
     .bead {
         border-radius: 50%;
-        height: 1.25rem;
-        width: 1.25rem;
+        height: 1.5rem;
+        width: 1.5rem;
     }
     button {
         margin-left: calc(min(1024px, 75vw) + 10px);
