@@ -47,8 +47,16 @@
         height: 1.25rem;
         width: 1.25rem;
     }
+    button {
+        margin-left: calc(min(1024px, 75vw) + 10px);
+        float: right;
+        position: absolute;
+        border-radius: 50%;
+        background-color: green;
+    }
 </style>
 
+<button type="button" on:click={() => onClick(10)}>&#8634</button>
 <div class="rod">
     {#each leftArr as index}
         <span on:click={() => onClick(index)}

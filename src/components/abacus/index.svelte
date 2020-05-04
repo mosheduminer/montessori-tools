@@ -5,7 +5,7 @@
 <style>
     .abacus {
         display: inline-block;
-        width: max(760px, 75vw);
+        width: min(1024px, 75vw);
         border: 0.5rem solid rgb(193,154,107);
         padding-top: 2rem;
         padding-bottom: 2rem;
