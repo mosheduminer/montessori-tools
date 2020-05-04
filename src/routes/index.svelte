@@ -157,6 +157,11 @@
 				<span>Bead Bars</span>
 			</a>
 		</li>
+		<li>
+			<a href="/abacus" id="abacus">
+				<span>Abacus</span>
+			</a>
+		</li>
 	</ul>
 
 	<h3>And more on the way!</h3>
