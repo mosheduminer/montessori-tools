@@ -159,8 +159,8 @@
 			</a>
 		</li>
 		<li>
-			<a href="/abacus" id="abacus">
-				<span>Abacus</span>
+			<a href="/large-bead-frame" id="abacus">
+				<span>Large Bead Frame</span>
 			</a>
 		</li>
 	</ul>

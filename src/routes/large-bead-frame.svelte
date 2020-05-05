@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-  <title>Abacus - Virtual Montessori Materials</title>
+  <title>Large Bead Frame - Virtual Montessori Materials</title>
 </svelte:head>
 
 <Abacus />

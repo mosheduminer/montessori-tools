@@ -29,7 +29,7 @@ Please make a pull request to master and ask a contributer to review. This is ta
 - Checkerboard - [Moshe Uminer][1] and [Menachem Hornbacher][2]
 - Fractions - [Moshe Uminer][1] and [Menachem Hornbacher][2]
 - Bead Bars - [Menachem Hornbacher][2]
-- Abacus - [Moshe Uminer][1]
+- Abacus/Large Bead Frame - [Moshe Uminer][1]
 
 # Licence
 
