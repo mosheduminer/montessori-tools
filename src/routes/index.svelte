@@ -171,6 +171,9 @@
 
 	<small>
 		<div>
+			Source code available <a href="https://github.com/mhornbacher/montessori-tools">on GitHub</a>. Please report any bugs or feature requests there.
+		</div>
+		<div>
 			Icons from <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a>
 			& <a href="https://www.flaticon.com/authors/flat-icons" title="Flat Icons">Flat Icons</a>
 			from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> |
