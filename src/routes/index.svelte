@@ -73,6 +73,7 @@
 	a#checkerboard { background-image: url("/img/checkerboard.jpg"); }
 	a#fractions { background-image: url("/img/fractions.png"); }
 	a#bead-bars { background-image: url("/img/bead-bars.png"); }
+	a#abacus { background-image: url("/img/abacus.png"); }
 
 	ul#games-list > li > a::before {
 		content: " ";
