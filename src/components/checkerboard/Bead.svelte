@@ -15,14 +15,15 @@
         'light-purple',
         'white',
         'brown',
-        'dark-blue'
+        'dark-blue',
+        'gold'
     ];
 
     // limit size to between 1 and 9
     let validSize;
     $: validSize = (!size || size <= 1)
             ? 1
-            : (size >= 9 ? 9 : size);
+            : (size >= colors.length ? colors.length : size);
 
     let color;
     $: color = colors[validSize - 1];
@@ -73,6 +74,7 @@
     .bead-white { background-color: white; }
     .bead-brown { background-color: brown; }
     .bead-dark-blue { background-color: darkblue; }
+    .bead-gold { background-color: goldenrod; }
 </style>
 
 <Draggable {...$$restProps}

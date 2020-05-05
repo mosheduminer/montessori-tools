@@ -71,16 +71,17 @@
         border: 1px solid;
         display: grid;
         grid-template-columns: repeat( auto-fit, minmax(48px, 1fr) );
-        gap: 10px;
+        gap: 9px;
         padding: 10px;
         margin: 0 auto 10px;
+        min-width: 270px;
     }
 
     #selector > #bead-box {
         display: flex;
         flex-wrap: wrap;
         border: 1px solid #7f522a;
-        max-width: 400px;
+        max-width: 410px;
     }
 
     #selector #right {
@@ -132,11 +133,12 @@
         border: 2px solid #7f522a;
         flex-grow: 1;
         display: inline-flex;
+        align-items: center;
         justify-content: center;
     }
 
     @media (min-width: 1500px) {
-        #number-rows .numbers-row { width: 570px; }
+        #number-rows .numbers-row { min-width: 570px; }
     }
 
     #grid {
@@ -175,7 +177,7 @@
             </div>
 
             <div id="bead-box">
-                {#each [ ...Array(9).keys() ] as bead}
+                {#each [ ...Array(10).keys() ] as bead}
                     <SpawnArea on:spawn={onSpawn} component={Bead} data={{dark: true, size: bead + 1, fullSize: true, shouldRotate: true}}>
                         <Bead size="{bead + 1}" on:moved={onMoved} disabled={true} fullSize={true}/>
                     </SpawnArea>
