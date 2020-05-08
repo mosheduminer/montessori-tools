@@ -50,6 +50,7 @@
         width: calc(100% - 100px);
         max-width: 1500px;
         max-height: 800px;
+        height: 75%;
         margin: 5px auto 0;
         background: url(/img/border.jpg);
         padding: 60px 50px;
@@ -145,11 +146,11 @@
     <title>Bead Frame - Virtual Montessori Materials</title>
 </svelte:head>
 
-<DragArea draggable={draggable} latest="{latest}">
-    <section>
-        <button on:click={emptyTrash} id="trash">
-            <img src="/icons/recycle.svg" alt="Clear" />
-        </button>
+<section>
+    <button on:click={emptyTrash} id="trash">
+        <img src="/icons/recycle.svg" alt="Clear" />
+    </button>
+    <DragArea draggable={draggable} latest="{latest}">
         <div id="bead-frame">
             <div id="bead-frame-top">
                 {#each [ ...Array(3).keys() ] as i}
@@ -179,5 +180,6 @@
             </div>
         </div>
         <NumberCards on:spawn={onSpawn} />
-    </section>
 </DragArea>
+</section>
+
