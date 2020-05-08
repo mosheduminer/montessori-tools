@@ -17,6 +17,7 @@
         padding: 12px;
         user-select: none;
         border: 1px solid;
+        font-family: cursive;
     }
 
     :global(.number-card-light) {
