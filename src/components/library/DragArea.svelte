@@ -2,6 +2,8 @@
     import { publish, TOPICS } from '../../lib/pubsub';
 
     export let topic = TOPICS.DRAG_AREA.MOVE;
+    export let draggable = [];
+    export let latest = undefined;
 
     let element;
     const update = (x, y) => {
@@ -26,4 +28,10 @@
         e.changedTouches[0].clientX, e.changedTouches[0].clientY
     )}>
     <slot />
+
+    {#each draggable as draggable (draggable.id)}
+        <svelte:component this="{draggable.component}" {...draggable.data}
+                          startPickedUp={draggable.id === latest} index={draggable.id}
+                          on:moved />
+    {/each}
 </div>

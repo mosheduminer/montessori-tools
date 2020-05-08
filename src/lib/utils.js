@@ -14,3 +14,11 @@ export function getOffset(e, rect) {
 
     return { x, y };
 }
+
+/**
+ * @param {string|number} number
+ * @param {string} separator
+ */
+export function formatNumber(number, separator = ",") {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator);
+}
