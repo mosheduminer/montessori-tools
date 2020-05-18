@@ -8,7 +8,6 @@
     export let svgId = undefined;
 
     let rotation = 0;
-    console.log('render slice');
 
     const id = Guid();
 
