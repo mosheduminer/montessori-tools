@@ -111,6 +111,7 @@
           <img src="/icons/home.svg" alt="home" />
         </a>
       </li>
+      {#if (segment === 'fractions' || segment === 'bead-bars') && is.desktop()}
       <li>
         <span class="button" on:click|preventDefault={showInfo}>
           🛈
