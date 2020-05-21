@@ -112,11 +112,12 @@
         </a>
       </li>
       {#if (segment === 'fractions' || segment === 'bead-bars') && is.desktop()}
-      <li>
-        <span class="button" on:click|preventDefault={showInfo}>
-          🛈
-        </span>
-      </li>
+        <li>
+          <span class="button" on:click|preventDefault={showInfo}>
+            🛈
+          </span>
+        </li>
+      {/if}
     </ul>
   </nav>
   <div id="information-box" bind:this={informationBox}>
