@@ -12,7 +12,8 @@
   };
   const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
   const constants = "aeiou".split("");
-  const amountPerRow = 13;
+  const amountPerRow = Math.min(Math.round(((process.browser ? window.innerWidth : 1024) - 28) / 70), 13);
+  const drawerHeight = 22 + Math.ceil(26 / amountPerRow) * 80
 
   const initialLetters = alphabet.map((char, index) => {
     return {
@@ -66,6 +67,10 @@
 
     return letterMoved;
   };
+  const fonts = ["macursiveul", "abcprint"];
+  const fontNames = ["Cursive font", "Print font"];
+  let fontIndex = 0;
+  const changeFont = () => (fontIndex = (fontIndex + 1) % 2);
 </script>
 
 <style>
@@ -73,13 +78,6 @@
     height: 100%;
     width: 100%;
     position: absolute;
-    background-color: cornsilk;
-    /* background-image: radial-gradient(
-      circle at 2rem 2.5rem,
-      rosybrown 0.4rem,
-      transparent 0
-    ); */
-    /* background-size: 4rem 4rem; */
   }
 
   #holder {
@@ -92,14 +90,30 @@
     /* border-bottom: 4px solid #cf9059; */
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   }
+  .font-button {
+    margin: 4px;
+    width: 5.5rem;
+    height: 1.4rem;
+
+    position: fixed;
+    bottom: 8px;
+    right: 8px;
+  }
 </style>
 
 <section id="moveable-alphabet-board">
 
   <div
+    style={`font-family: ${fonts[fontIndex]};`}
     on:mousemove={(e) => update(e.clientX, e.clientY)}
     on:touchmove|preventDefault={(e) => update(e.changedTouches[0].clientX, e.changedTouches[0].clientY)}>
-    <span id="holder" />
+    <span id="holder" style={`height: ${drawerHeight}px;`} />
+    <button
+      class="font-button"
+      style={`font-family: ${fonts[(fontIndex + 1) % 2]};`}
+      on:click={changeFont}>
+      {fontNames[(fontIndex + 1) % 2]}
+    </button>
 
     {#each letters as letter, i (letter.id)}
       <Letter index={i} {...letter} {moveLetter} />

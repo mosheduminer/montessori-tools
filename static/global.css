@@ -36,6 +36,16 @@ code {
 }
 
 @font-face {
+	font-family: "macursiveul";
+	src: url(/fonts/macursiveul.ttf);
+}
+
+@font-face {
+	font-family: "macursiveul-italic";
+	src: url(/fonts/macursive.ttf);
+}
+
+@font-face {
 	font-family: "macursive";
 	src: url(/fonts/macursive.ttf);
 }
