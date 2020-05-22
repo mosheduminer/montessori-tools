@@ -169,6 +169,11 @@
                 <span>Bead Frame</span>
             </a>
         </li>
+        <li>
+            <a href="/moveable-alphabet" id="moveable-alphabet">
+                <span>Movable Alphabet</span>
+            </a>
+        </li>
     </ul>
 
     <h3>And more on the way!</h3>
