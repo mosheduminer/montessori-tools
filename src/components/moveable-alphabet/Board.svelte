@@ -7,8 +7,8 @@
   };
 
   const colors = {
-    RED: "red",
-    BLUE: "blue",
+    RED: "#FA2200",
+    BLUE: "#3977C0",
   };
   const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
   const constants = "aeiou".split("");
@@ -35,21 +35,21 @@
 
   let letters = [...initialLetters.map((l) => ({ ...l, id: getId() }))];
 
-  const moveLetter = ({ id, from, to }) => {
-    const letter = letters[from.index];
-    let success = true;
+  const moveLetter = ({ index, from, to }) => {
+    const letter = letters[index];
+    let letterMoved = true;
 
     // delete letter by moving back to its initial place
     if (isBaseCoord(to)) {
       if (isNotBaseCoord(from)) {
-        letters.splice(from.index, 1);
+        letters.splice(index, 1);
       } else {
         // it is another placeholder letter
-        success = false;
+        letterMoved = false;
       }
       // not going back into the drawer
     } else {
-      // make sure there is always a dot in the drawer
+      // make sure there is always a letter in the drawer
       if (isBaseCoord(from)) {
         letters.push({
           ...findBaseLetter(from),
@@ -58,13 +58,13 @@
       }
     }
 
-    if (success) {
+    if (letterMoved) {
       letters = letters.map((l) =>
         l.id === letter.id ? { ...l, x: to.x, y: to.y, id: letter.id } : l
       );
     }
 
-    return success;
+    return letterMoved;
   };
 </script>
 
@@ -79,19 +79,19 @@
       rosybrown 0.4rem,
       transparent 0
     ); */
-    background-size: 4rem 4rem;
+    /* background-size: 4rem 4rem; */
   }
 
-  /* #holder {
+  #holder {
     display: block;
-    height: 4.1rem;
-    width: 12.1rem;
+    /* 14 + 72 + 8 + 72 + 14 */
+    height: 180px;
+    width: 100%;
 
-    background: #fff8dc;
-    border-bottom: 4px solid #cf9059;
-    border-right: 4px solid #cf9059;
+    background: url(/img/smooth-wood.jpg);
+    /* border-bottom: 4px solid #cf9059; */
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-  } */
+  }
 </style>
 
 <section id="moveable-alphabet-board">

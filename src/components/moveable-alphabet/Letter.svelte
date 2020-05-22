@@ -12,15 +12,7 @@
 
   let element;
   let listener;
-  let pickedup = false;
   let coords = spring({ x, y }, { stiffness: 1, damping: 0.8 });
-
-  const updateCoords = (mouseX, mouseY) => {
-    const rect = element.getBoundingClientRect();
-    const x = mouseX - rect.height / 2;
-    const y = mouseY - rect.width / 2;
-    coords.set({ x, y });
-  };
 
   const pickup = () => {
     listener = listener || subscribe(TOPICS.ALPHABET_BOARD.MOVE, move);
@@ -37,8 +29,8 @@
 
     if (
       moveLetter({
-        color,
-        from: { x, y, index },
+        index,
+        from: { x, y },
         to: { x: finalCoords.x, y: finalCoords.y },
       })
     ) {
@@ -62,12 +54,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 3.5rem;
-    height: 4.5rem;
+    width: 56px;
+    height: 72px;
     position: absolute;
     margin: 0;
-    font-size: 2rem;
+    font-size: 3rem;
 
+    font-family: "abcprint";
     background-color: white;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 
