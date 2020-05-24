@@ -75,6 +75,7 @@
     a#bead-bars { background-image: url("/img/bead-bars.png"); }
     a#abacus { background-image: url("/img/abacus.png"); }
     a#bead-frame { background-image: url("/img/bead-frame.png"); }
+    a#moveable-alphabet { background-image: url("/img/moveable-alphabet.png"); }
 
     ul#games-list > li > a::before {
         content: " ";
