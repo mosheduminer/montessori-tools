@@ -6,21 +6,38 @@
     publish(TOPICS.ALPHABET_BOARD.MOVE, { x, y });
   };
 
+  const pageWith = process.browser ? window.innerWidth : 1024;
+  let grid = {
+    offsetX: 14,
+    offsetY: 14,
+    height: 80,
+    width: 64,
+  }
+  if (pageWith < 800) {
+    grid.height = 64
+    grid.width = 52
+  }
+  if (pageWith < 400) {
+    grid.height = 48
+    grid.width = 40
+  }
+
   const colors = {
     RED: "#FA2200",
     BLUE: "#3977C0",
   };
   const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
   const constants = "aeiou".split("");
-  const amountPerRow = Math.min(Math.round(((process.browser ? window.innerWidth : 1024) - 28) / 70), 13);
-  const drawerHeight = 22 + Math.ceil(26 / amountPerRow) * 80
+  const amountPerRow = Math.min(Math.round((pageWith - 80) / grid.width), 13);
+  const drawerHeight = 22 + Math.ceil(26 / amountPerRow) * grid.height;
 
   const initialLetters = alphabet.map((char, index) => {
     return {
       char: char,
       color: constants.includes(char) ? colors.BLUE : colors.RED,
-      x: 14 + (index % amountPerRow) * 64,
-      y: 14 + Math.floor(index / amountPerRow) * 80,
+      x: 14 + (index % amountPerRow) * grid.width,
+      y: 14 + Math.floor(index / amountPerRow) * grid.height,
+      grid
     };
   });
 
@@ -67,8 +84,9 @@
 
     return letterMoved;
   };
-  const fonts = ["macursiveul", "abcprint"];
-  const fontNames = ["Cursive font", "Print font"];
+
+  const fonts = ["abcprint", "macursiveul"];
+  const fontNames = ["Print font", "Cursive font"];
   let fontIndex = 0;
   const changeFont = () => (fontIndex = (fontIndex + 1) % 2);
 </script>
@@ -82,22 +100,17 @@
 
   #holder {
     display: block;
-    /* 14 + 72 + 8 + 72 + 14 */
-    height: 180px;
     width: 100%;
-
     background: url(/img/smooth-wood.jpg);
-    /* border-bottom: 4px solid #cf9059; */
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   }
-  .font-button {
-    margin: 4px;
-    width: 5.5rem;
-    height: 1.4rem;
 
+  .font-button {
+    font-size: 1rem;
     position: fixed;
     bottom: 8px;
     right: 8px;
+    z-index: 2;
   }
 </style>
 
@@ -107,6 +120,7 @@
     style={`font-family: ${fonts[fontIndex]};`}
     on:mousemove={(e) => update(e.clientX, e.clientY)}
     on:touchmove|preventDefault={(e) => update(e.changedTouches[0].clientX, e.changedTouches[0].clientY)}>
+
     <span id="holder" style={`height: ${drawerHeight}px;`} />
     <button
       class="font-button"

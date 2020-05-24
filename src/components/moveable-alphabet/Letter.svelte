@@ -1,12 +1,13 @@
 <script>
   import { spring } from "svelte/motion";
   import { subscribe, TOPICS } from "../../lib/pubsub";
-  import { normalizeLetterCoords } from "../../lib/normalizer";
+  import { alignToGrid } from "../../lib/normalizer";
 
   export let color;
   export let char;
   export let x;
   export let y;
+  export let grid;
   export let index;
   export let moveLetter;
 
@@ -25,7 +26,7 @@
       listener = listener.remove();
     }
 
-    let finalCoords = normalizeLetterCoords($coords.x, $coords.y);
+    let finalCoords = alignToGrid($coords.x, $coords.y, grid);
 
     if (
       moveLetter({
@@ -50,30 +51,40 @@
 </script>
 
 <style>
-  span {
+  .grid-cell {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 56px;
-    height: 72px;
     position: absolute;
-    margin: 0;
-    font-size: 3rem;
-
+    padding: 2px;
+  }
+  .letter {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     background-color: white;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     border: 0.5px solid black;
-
+    border-radius: 2px;
     user-select: none;
   }
 </style>
 
 <span
-  bind:this={element}
-  on:mousedown={pickup}
-  on:mouseup={putdown}
-  on:touchstart={pickup}
-  on:touchend={putdown}
-  style="color: {color}; left: {$coords.x || 14}px; top: {$coords.y || 14}px;">
-  {char}
+  class="grid-cell"
+  style="color: {color}; left: {$coords.x || 14}px; top: {$coords.y || 14}px;
+  width: {grid.width}px; height: {grid.height}px; font-size: {grid.width / 20}rem;">
+  <span
+    class="letter"
+    bind:this={element}
+    on:mousedown={pickup}
+    on:mouseup={putdown}
+    on:touchstart={pickup}
+    on:touchend={putdown}>
+    {char}
+  </span>
 </span>

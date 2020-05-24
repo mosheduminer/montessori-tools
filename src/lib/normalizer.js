@@ -9,10 +9,10 @@ export function normalizePegCoords(x, y) {
     };
 };
 
-export function normalizeLetterCoords(x, y) {
+export function alignToGrid(x, y, { offsetX, offsetY, width, height }) {
     return {
-        x: round(x, { offset: 14, step: 64 }),
-        y: round(y, { offset: 14, step: 80 }),
+        x: round(x, { offset: offsetX, step: width }),
+        y: round(y, { offset: offsetY, step: height }),
     };
 };
 
