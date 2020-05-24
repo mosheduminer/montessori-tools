@@ -37,9 +37,9 @@
   #cover {
     position: absolute;
     top: 160px;
-    left: 200px;
-    height: 260px;
-    width: 635px;
+    left: 220px;
+    height: 300px;
+    width: 615px;
     background-color: white;
   }
 </style>

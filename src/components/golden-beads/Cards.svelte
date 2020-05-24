@@ -11,7 +11,7 @@
     display: grid;
     background-color: burlywood;
     width: 216px;
-    height: 376px;
+    height: 420px;
     padding: 1px;
     grid-template-columns: 22px calc(22px + 1rem) calc(22px + 2rem) calc(
         22px + 3rem
@@ -33,14 +33,14 @@
         <SpawnArea
           on:spawn
           component={NumberCard}
-          data={{ style: `width: calc(22px + ${index}rem); padding-left: 0; padding-right: 0; z-index: ${200 - index}`, 
+          data={{ style: `width: calc(22px + ${index}rem); padding-left: 0; padding-right: 0; z-index: ${500 - index}`, 
             number: number * magnitude }}>
           <NumberCard
             disabled={true}
             x={index === 3 ? 136 : index === 2 ? 80 : index === 1 ? 40 : 16}
             y={columnIndex * 44 + 16}
             number={number * magnitude}
-            style={`width: calc(22px + ${index}rem); padding-left: 0; padding-right: 0; z-index: ${200 - index}`} />
+            style={`width: calc(22px + ${index}rem); padding-left: 0; padding-right: 0; z-index: ${500 - index}`} />
         </SpawnArea>
       {/each}
     </div>
