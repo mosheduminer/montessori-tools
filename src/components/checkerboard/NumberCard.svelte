@@ -3,6 +3,7 @@
 
     export let dark = false;
     export let number;
+    export let style = "";
 </script>
 
 <style>
@@ -37,6 +38,6 @@
     }
 </style>
 
-<Draggable {...$$restProps} class="number-card-{dark ? 'dark' : 'light'}" on:moved>
+<Draggable {...$$restProps} {style} class="number-card-{dark ? 'dark' : 'light'}" on:moved>
     {number}
 </Draggable>

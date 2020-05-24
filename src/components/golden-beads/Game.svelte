@@ -1,6 +1,7 @@
 <script>
   import BeadGroup from "./BeadGroup.svelte";
   import ThousandBeads from "./ThousandBeads.svelte";
+  import Cards from "./Cards.svelte";
   import DragArea from "../library/DragArea.svelte";
   import SpawnArea from "../library/SpawnArea.svelte";
   import SpawnContainer from "./SpawnContainer.svelte";
@@ -28,15 +29,25 @@
 <style>
   #spawn-area {
     padding: 1rem;
-    width: 31rem;
+    width: 50rem;
     background-color: burlywood;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 220px repeat(4, 1fr);
+  }
+  #cover {
+    position: absolute;
+    top: 160px;
+    left: 200px;
+    height: 260px;
+    width: 635px;
+    background-color: white;
   }
 </style>
 
-<DragArea style="height: 100vh" draggable={draggables}>
+<DragArea style="height: 100vh" draggable={draggables} {latest}>
+  <div id="cover" />
   <div id="spawn-area">
+    <Cards on:spawn={spawn} />
     <SpawnContainer>
       <SpawnArea
         component={ThousandBeads}

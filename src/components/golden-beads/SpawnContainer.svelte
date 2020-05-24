@@ -1,7 +1,7 @@
 <style>
   div {
-    height: 7.5rem;
-    width: 7.5rem;
+    height: 8rem;
+    width: 8rem;
     display: flex;
     justify-content: center;
     align-items: center;
