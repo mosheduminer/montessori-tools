@@ -1,64 +1,22 @@
 <script>
-  import { spring } from "svelte/motion";
-  import { subscribe, TOPICS } from "../../lib/pubsub";
-  import { alignToGrid } from "../../lib/normalizer";
+  import Draggable from '../library/Draggable.svelte';
 
   export let color;
   export let char;
-  export let x;
-  export let y;
-  export let grid;
-  export let index;
-  export let moveLetter;
-
-  let element;
-  let listener;
-  let coords = spring({ x, y }, { stiffness: 1, damping: 0.8 });
-
-  const pickup = () => {
-    listener = listener || subscribe(TOPICS.ALPHABET_BOARD.MOVE, move);
-    element.style.zIndex = "10";
-  };
-
-  const putdown = function () {
-    element.style.zIndex = "1";
-    if (listener !== undefined) {
-      listener = listener.remove();
-    }
-
-    let finalCoords = alignToGrid($coords.x, $coords.y, grid);
-
-    if (
-      moveLetter({
-        index,
-        from: { x, y },
-        to: { x: finalCoords.x, y: finalCoords.y },
-      })
-    ) {
-      coords.set({ x: finalCoords.x, y: finalCoords.y });
-    } else {
-      coords.set({ x, y });
-    }
-  };
-
-  const move = ({ x, y }) => {
-    const rect = element.getBoundingClientRect();
-    coords.set({
-      x: x - rect.height / 2,
-      y: y - rect.width / 2,
-    });
-  };
+  export let cursive = false;
 </script>
 
 <style>
-  .grid-cell {
+  :global(.letter-container) {
     box-sizing: border-box;
+    padding: 2px;
+    height: 60px;
+    width: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    padding: 2px;
   }
+
   .letter {
     box-sizing: border-box;
     display: flex;
@@ -74,17 +32,8 @@
   }
 </style>
 
-<span
-  class="grid-cell"
-  style="color: {color}; left: {$coords.x || 14}px; top: {$coords.y || 14}px;
-  width: {grid.width}px; height: {grid.height}px; font-size: {grid.width / 20}rem;">
-  <span
-    class="letter"
-    bind:this={element}
-    on:mousedown={pickup}
-    on:mouseup={putdown}
-    on:touchstart={pickup}
-    on:touchend={putdown}>
+<Draggable {...$$restProps} style="color: {color};" class="letter-container" on:moved>
+  <span class="letter" class:cursive={cursive}>
     {char}
   </span>
-</span>
+</Draggable>

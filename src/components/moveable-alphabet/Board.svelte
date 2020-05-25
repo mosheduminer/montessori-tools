@@ -1,127 +1,119 @@
 <script>
   import Letter from "./Letter.svelte";
-  import { publish, TOPICS } from "../../lib/pubsub";
+  import DragArea from '../library/DragArea.svelte';
+  import SpawnArea from '../library/SpawnArea.svelte';
 
-  const update = (x, y) => {
-    publish(TOPICS.ALPHABET_BOARD.MOVE, { x, y });
-  };
+  const sweepAudio = typeof Audio !== 'undefined' && new Audio('/audio/sweep.mp3');
+  let latest = 0, draggable = [];
 
-  const pageWith = process.browser ? window.innerWidth : 1024;
-  let grid = {
-    offsetX: 14,
-    offsetY: 14,
-    height: 80,
-    width: 64,
+  const onSpawn = (event) => {
+      const {component, data} = event.detail;
+      const id = ++latest;
+      draggable.push({ id, component, data });
+      draggable = draggable;
   }
-  if (pageWith < 800) {
-    grid.height = 64
-    grid.width = 52
-  }
-  if (pageWith < 400) {
-    grid.height = 48
-    grid.width = 40
+
+  const emptyTrash = () => {
+      sweepAudio.volume = .3;
+      sweepAudio.play();
+      draggable = [];
   }
 
   const colors = {
     RED: "#FA2200",
     BLUE: "#3977C0",
   };
+
   const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
   const constants = "aeiou".split("");
-  const amountPerRow = Math.min(Math.round((pageWith - 80) / grid.width), 13);
-  const drawerHeight = 22 + Math.ceil(26 / amountPerRow) * grid.height;
 
   const initialLetters = alphabet.map((char, index) => {
     return {
       char: char,
-      color: constants.includes(char) ? colors.BLUE : colors.RED,
-      x: 14 + (index % amountPerRow) * grid.width,
-      y: 14 + Math.floor(index / amountPerRow) * grid.height,
-      grid
+      color: constants.includes(char) ? colors.BLUE : colors.RED
     };
   });
-
-  const findBaseLetter = ({ x, y }) => {
-    return initialLetters.find((c) => c.x === x && c.y === y);
-  };
-
-  const isBaseCoord = ({ x, y }) => !!findBaseLetter({ x, y });
-  const isNotBaseCoord = ({ x, y }) => !findBaseLetter({ x, y });
 
   let id = 1;
   const getId = () => id++;
 
   let letters = [...initialLetters.map((l) => ({ ...l, id: getId() }))];
 
-  const moveLetter = ({ index, from, to }) => {
-    const letter = letters[index];
-    let letterMoved = true;
-
-    // delete letter by moving back to its initial place
-    if (isBaseCoord(to)) {
-      if (isNotBaseCoord(from)) {
-        letters.splice(index, 1);
-      } else {
-        // it is another placeholder letter
-        letterMoved = false;
-      }
-      // not going back into the drawer
-    } else {
-      // make sure there is always a letter in the drawer
-      if (isBaseCoord(from)) {
-        letters.push({
-          ...findBaseLetter(from),
-          id: getId(),
-        });
-      }
-    }
-
-    if (letterMoved) {
-      letters = letters.map((l) =>
-        l.id === letter.id ? { ...l, x: to.x, y: to.y, id: letter.id } : l
-      );
-    }
-
-    return letterMoved;
-  };
-
   const fonts = ["abcprint", "macursiveul"];
+  const fontSizes = ["36px", "40px"];
   const fontNames = ["Print font", "Cursive font"];
   let fontIndex = 0;
   const changeFont = () => (fontIndex = (fontIndex + 1) % 2);
 </script>
 
 <style>
-  div {
-    height: 100%;
-    width: 100%;
-    position: absolute;
+  #moveable-alphabet-board {
+    height: 100vh;
   }
 
   #holder {
-    display: block;
-    width: 100%;
     background: url(/img/smooth-wood.jpg);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    border: 4px solid blue;
+    padding: 10px;
+    display: block;
+    margin: 12px auto;
+    width: fit-content;
+    max-width: 80%;
+    text-align: center;
   }
 
   .font-button {
-    font-size: 1rem;
+    font-size: 28px;
     position: fixed;
-    bottom: 8px;
-    right: 8px;
+    bottom: 0;
+    left: 0;
     z-index: 2;
+    padding: 8px;
+    background: none;
+    border: none;
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+    border-top-right-radius: 10px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .5);
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+   #trash {
+      position: fixed;
+      height: 65px;
+      width: 65px;
+      left: 0;
+      top: 0;
+      background: #ffdab9;
+      padding: 8px;
+      border-bottom-right-radius: 15%;
+      z-index: 1000;
+      box-shadow: 1px 1px 10px rgba(0, 0, 0, .5);
   }
 </style>
 
-<section id="moveable-alphabet-board">
+<section id="moveable-alphabet-board" style={`font-family: ${fonts[fontIndex]}; font-size: ${fontSizes[fontIndex]};`}>
+  <button on:click={emptyTrash} id="trash">
+      <img src="/icons/recycle.svg" alt="Clear" />
+  </button>
 
-  <div
-    style={`font-family: ${fonts[fontIndex]};`}
-    on:mousemove={(e) => update(e.clientX, e.clientY)}
-    on:touchmove|preventDefault={(e) => update(e.changedTouches[0].clientX, e.changedTouches[0].clientY)}>
+  <DragArea draggable={draggable} latest={latest}>
+    <div id="holder">
+      {#each initialLetters as letter}
+        <SpawnArea on:spawn={onSpawn} component={Letter} data={{...letter}}>
+          <Letter disabled={true} {...letter} />
+        </SpawnArea>
+      {/each}
+    </div>
+  </DragArea>
+  
 
-    <span id="holder" style={`height: ${drawerHeight}px;`} />
+  <div>
     <button
       class="font-button"
       style={`font-family: ${fonts[(fontIndex + 1) % 2]};`}
@@ -129,8 +121,8 @@
       {fontNames[(fontIndex + 1) % 2]}
     </button>
 
-    {#each letters as letter, i (letter.id)}
+    <!-- {#each letters as letter, i (letter.id)}
       <Letter index={i} {...letter} {moveLetter} />
-    {/each}
+    {/each} -->
   </div>
 </section>
