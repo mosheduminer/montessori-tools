@@ -36,6 +36,7 @@
     flex-wrap: wrap;
     align-items: center;
     width: 95%;
+    max-width: 1000px;
     justify-content: space-around;
   }
 

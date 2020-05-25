@@ -75,6 +75,7 @@
     a#abacus { background-image: url("/img/abacus.png"); }
     a#bead-frame { background-image: url("/img/bead-frame.png"); }
     a#moveable-alphabet { background-image: url("/img/moveable-alphabet.png"); }
+    a#stamp-game { background-image: url("/img/stamp-game.png"); }
 
     ul#games-list > li > a::before {
         content: " ";
