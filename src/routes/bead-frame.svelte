@@ -79,7 +79,7 @@
         justify-content: center;
         text-align: center;
         font-size: 20px;
-        font-family: cursive;
+        font-family: macursiveul;
         color: rgb(193,154,107);
     }
 

@@ -24,7 +24,7 @@
     font-size: 56px;
     float: left;
     width: 20%;
-    font-family: cursive;
+    font-family: macursiveul;
   }
 
   #total-inputs {

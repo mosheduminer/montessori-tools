@@ -49,7 +49,7 @@
         height: 100vh;
         width: 100vw;
         overflow: hidden;
-        background: url(/img/table-top.jpg);
+        /* background: url(/img/table-top.jpg); */
     }
 
     #selector {
