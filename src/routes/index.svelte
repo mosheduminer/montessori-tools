@@ -54,7 +54,6 @@
         position: relative;
         font-weight: bold;
         text-decoration: none;
-        font-family: cursive;
 
         display: inline-flex;
         align-items: center;
@@ -173,6 +172,11 @@
         <li>
             <a href="/moveable-alphabet" id="moveable-alphabet">
                 <span>Movable Alphabet</span>
+            </a>
+        </li>
+        <li>
+            <a href="/stamp-game" id="stamp-game">
+                <span>Stamp Game</span>
             </a>
         </li>
     </ul>

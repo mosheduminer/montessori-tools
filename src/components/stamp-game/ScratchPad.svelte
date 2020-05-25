@@ -11,7 +11,8 @@
         background: #fff;
         padding: 15px;
         border-radius: 3px;
-        box-shadow: 1px 1px 5px rgba(0, 0, 0, .5)
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, .5);
+        display: inline-block;
     }
 
     td {
@@ -19,20 +20,20 @@
         border: 1px solid #000;
     }
 
-    td input {
+    td input, td input:focus {
         border: none;
         text-align: center;
     }
 
     th, td input {
         font-weight: bold;
-        font-family: cursive;
         font-size: 18px;
         font-style: italic;
     }
 
     td:first-child, td:first-child input {
-        width: 3em;
+        width: 2.5em;
+        height: 2em;
         border: none;
     }
 
@@ -41,12 +42,13 @@
     }
 
     td:not(:first-child), td:not(:first-child) input {
-        width: 3em;
+        width: 2em;
+        height: 2em;
     }
 
-    .pad-green input { color: green; }
-    .pad-red input { color: red; }
-    .pad-blue input { color: blue; }
+    .pad-green input, .green { color: green; }
+    .pad-red input, .red { color: red; }
+    .pad-blue input, .blue { color: blue; }
 
     hr {
         margin: 2px 0px;
@@ -64,10 +66,10 @@
 <table>
     <thead>
         <th></th>
-        <th>th</th>
-        <th>h</th>
-        <th>t</th>
-        <th>u</th>
+        <th class="green">th</th>
+        <th class="red">h</th>
+        <th class="blue">t</th>
+        <th class="green">u</th>
     </thead>
     <tbody>
         {#each [ ...Array(rows).keys() ] as row}

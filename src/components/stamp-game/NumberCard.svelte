@@ -1,16 +1,16 @@
 <script>
     import Draggable from '../library/Draggable.svelte'
+    import { formatNumber } from '../../lib/utils';
 
-    export let dark = false;
     export let color = undefined;
     export let number;
 </script>
 
 <style>
     :global(.number-card) {
-        min-width: 22px;
-        height: 22px;
-        font-size: 22px;
+        min-width: 40px;
+        height: 40px;
+        font-size: 40px;
         text-align: center;
         display: inline-flex;
         justify-content: center;
@@ -18,14 +18,8 @@
         padding: 12px;
         user-select: none;
         border: 1px solid;
-        font-family: cursive;
-    }
-    :global(.number-card-light) {
-        background-color: #eee;
-    }
-
-    :global(.number-card-dark) {
-        background-color: #bbb;
+        font-family: macursiveul;
+        font-weight: bold;
     }
 
     :global(.number-card-green) {
@@ -48,12 +42,12 @@
 
     @media (max-width: 1325px) {
         :global(.number-card) {
-            min-width: 18px;
-            height: 18px;
+            min-width: 36px;
+            height: 36px;
         }
     }
 </style>
 
-<Draggable {...$$restProps} class="number-card number-card-{color ? color : dark ? 'dark' : 'light'}" on:moved>
-    {number}
+<Draggable {...$$restProps} class="number-card number-card-{color}" on:moved>
+    {formatNumber(number)}
 </Draggable>
