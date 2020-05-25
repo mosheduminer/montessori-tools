@@ -34,3 +34,28 @@ code {
 		font-size: 16px;
 	}
 }
+
+@font-face {
+	font-family: "macursiveul";
+	src: url(/fonts/macursiveul.ttf);
+}
+
+@font-face {
+	font-family: "macursiveul-italic";
+	src: url(/fonts/macursive.ttf);
+}
+
+@font-face {
+	font-family: "macursive";
+	src: url(/fonts/macursive.ttf);
+}
+
+@font-face {
+	font-family: "macursive-bold-italic";
+	src: url(/fonts/macursive-bold-italic.ttf);
+}
+
+@font-face {
+	font-family: "abcprint";
+	src: url(/fonts/abcprint.ttf);
+}

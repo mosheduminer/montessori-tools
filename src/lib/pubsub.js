@@ -37,6 +37,9 @@ export const TOPICS = {
     PEG_BOARD: {
         MOVE: 'PEG_BOARD/MOVE'
     },
+    ALPHABET_BOARD: {
+        MOVE: 'ALPHABET_BOARD/MOVE'
+    },
     DRAG_AREA: {
         MOVE: 'DRAG_AREA/MOVE'
     }

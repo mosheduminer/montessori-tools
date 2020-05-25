@@ -75,6 +75,7 @@
     a#bead-bars { background-image: url("/img/bead-bars.png"); }
     a#abacus { background-image: url("/img/abacus.png"); }
     a#bead-frame { background-image: url("/img/bead-frame.png"); }
+    a#moveable-alphabet { background-image: url("/img/moveable-alphabet.png"); }
 
     ul#games-list > li > a::before {
         content: " ";
@@ -167,6 +168,11 @@
         <li>
             <a href="/bead-frame" id="bead-frame">
                 <span>Bead Frame</span>
+            </a>
+        </li>
+        <li>
+            <a href="/moveable-alphabet" id="moveable-alphabet">
+                <span>Movable Alphabet</span>
             </a>
         </li>
     </ul>
