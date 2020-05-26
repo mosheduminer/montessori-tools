@@ -6,6 +6,7 @@
 
 Due to the COVID-19 pandemic many students around the world are forced to stay home without the materials they are used to in the classroom. This project aims to provide offline web based materials that students can use on their home computers.
 
+[![Known Vulnerabilities](https://snyk.io/test/github/mhornbacher/montessori-tools/badge.svg?targetFile=package.json)](https://snyk.io/test/github/mhornbacher/montessori-tools?targetFile=package.json)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/c624aa48-d572-4f69-a0c0-37c5a67cc904/deploy-status)](https://app.netlify.com/sites/virtualmontessorimaterials/deploys)
 
 # Tech
