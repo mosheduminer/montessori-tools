@@ -27,47 +27,53 @@
 </script>
 
 <style>
-  #spawn-area {
-    padding: 1rem;
-    width: 50rem;
-    background-color: burlywood;
-    display: grid;
-    grid-template-columns: 220px repeat(4, 1fr);
+  section {
+    height: 100vh;
   }
-  #cover {
-    position: absolute;
-    top: 160px;
-    left: 220px;
-    height: 300px;
-    width: 615px;
-    background-color: white;
+
+  #selectors {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-wrap: wrap-reverse;
+  }
+
+  #beads-selector {
+    background: #fff3e1;
+    border: 4px solid #895f2b;
+    display: inline-grid;
+    grid-template-columns: 3fr 3fr 2fr 2fr;
   }
 </style>
 
-<DragArea style="height: 100vh" draggable={draggables} {latest}>
-  <div id="cover" />
-  <div id="spawn-area">
-    <Cards on:spawn={spawn} />
-    <SpawnContainer>
-      <SpawnArea
-        component={ThousandBeads}
-        on:spawn={spawn}
-        data={{ width: 10, height: 10 }}>
-        <ThousandBeads disabled={true} />
-      </SpawnArea>
-    </SpawnContainer>
-    {#each dimensions as dimension}
-      <SpawnContainer>
-        <SpawnArea
-          component={BeadGroup}
-          on:spawn={spawn}
-          data={{ width: dimension.width, height: dimension.height }}>
-          <BeadGroup
-            disabled={true}
-            width={dimension.width}
-            height={dimension.height} />
-        </SpawnArea>
-      </SpawnContainer>
-    {/each}
-  </div>
-</DragArea>
+<section>
+  <DragArea draggable={draggables} {latest}>
+    <div id="selectors">
+      <Cards on:spawn={spawn} />
+
+      <div id="beads-selector">
+        <SpawnContainer>
+          <SpawnArea
+            component={ThousandBeads}
+            on:spawn={spawn}
+            data={{ width: 10, height: 10 }}>
+            <ThousandBeads disabled={true} />
+          </SpawnArea>
+        </SpawnContainer>
+        {#each dimensions as dimension}
+          <SpawnContainer>
+            <SpawnArea
+              component={BeadGroup}
+              on:spawn={spawn}
+              data={{ width: dimension.width, height: dimension.height }}>
+              <BeadGroup
+                disabled={true}
+                width={dimension.width}
+                height={dimension.height} />
+            </SpawnArea>
+          </SpawnContainer>
+        {/each}
+      </div>
+    </div>
+  </DragArea>
+</section>

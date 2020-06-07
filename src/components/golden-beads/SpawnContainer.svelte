@@ -1,10 +1,11 @@
 <style>
   div {
-    height: 8rem;
-    width: 8rem;
+    align-items: center;
+    border: 4px solid #895f2b;
     display: flex;
     justify-content: center;
-    align-items: center;
+    pointer-events: none;
+    padding: 10px;
   }
 </style>
 

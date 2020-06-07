@@ -180,6 +180,11 @@
                 <span>Stamp Game</span>
             </a>
         </li>
+        <li>
+            <a href="/golden-beads" id="golden-beads">
+                <span>Golden Beads</span>
+            </a>
+        </li>
     </ul>
 
     <h3>And more on the way!</h3>
