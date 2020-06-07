@@ -76,6 +76,7 @@
     a#bead-frame { background-image: url("/img/bead-frame.png"); }
     a#moveable-alphabet { background-image: url("/img/moveable-alphabet.png"); }
     a#stamp-game { background-image: url("/img/stamp-game.png"); }
+    a#golden-beads { background-image: url("/img/golden-bead-background.png")}
 
     ul#games-list > li > a::before {
         content: " ";
@@ -178,6 +179,11 @@
         <li>
             <a href="/stamp-game" id="stamp-game">
                 <span>Stamp Game</span>
+            </a>
+        </li>
+        <li>
+            <a href="/golden-beads" id="golden-beads">
+                <span>Golden Beads</span>
             </a>
         </li>
     </ul>
