@@ -29,29 +29,27 @@
 <style>
   section {
     height: 100vh;
+    background: url(/img/table-top.jpg);
   }
 
-  #selectors {
+  #cards {
+    float: right;
+    height: 100%;
     display: flex;
-    align-items: flex-start;
-    justify-content: space-around;
-    flex-wrap: wrap-reverse;
+    align-items: center;
   }
 
   #beads-selector {
-    background: #fff3e1;
-    border: 4px solid #895f2b;
+    /* background: #fff3e1;
+    border: 4px solid #895f2b; */
     display: inline-grid;
-    grid-template-columns: 3fr 3fr 2fr 2fr;
+    grid-template-columns: 3fr 3fr 1fr 1fr;
   }
 </style>
 
 <section>
   <DragArea draggable={draggables} {latest}>
-    <div id="selectors">
-      <Cards on:spawn={spawn} />
-
-      <div id="beads-selector">
+    <div id="beads-selector">
         <SpawnContainer>
           <SpawnArea
             component={ThousandBeads}
@@ -74,6 +72,8 @@
           </SpawnContainer>
         {/each}
       </div>
+    <div id="cards">
+      <Cards on:spawn={spawn} />
     </div>
   </DragArea>
 </section>

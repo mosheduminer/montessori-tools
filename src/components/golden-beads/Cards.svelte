@@ -35,12 +35,4 @@
       </SpawnArea>
     {/each}
   {/each}
-
-  <!-- {#each magnitudes as magnitude, index}
-    <div class="number-column">
-      {#each numbers as number, columnIndex}
-        
-      {/each}
-    </div>
-  {/each} -->
 </div>

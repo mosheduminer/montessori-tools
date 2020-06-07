@@ -9,11 +9,11 @@
 </script>
 
 <style>
-    .number-card {
+    :global(.stackable-number-card) {
         background: #fff;
         display: inline-flex;
         justify-content: space-around;
-        border: 1px solid;
+        padding: 2px 0px;
         font-size: 22px;
         font-family: macursiveul;
         font-weight: bold;
@@ -21,10 +21,8 @@
     }
 </style>
 
-<Draggable {...$$restProps} on:moved>
-    <span class="number-card" {style}>
-        {#each digits as digit}
-            <span class="number-card-digit">{digit}</span>
-        {/each}
-    </span>
+<Draggable {...$$restProps} class="stackable-number-card" on:moved {style}>
+    {#each digits as digit}
+        <span class="number-card-digit">{digit}</span>
+    {/each}
 </Draggable>
