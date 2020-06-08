@@ -31,21 +31,19 @@
     }
 
     ul#games-list {
-        display: flex;
-        padding: 0;
+        display: grid;
+        gap: 20px;
+        padding: 10px 0;
         margin: 0;
-        flex-wrap: wrap;
+        grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
         list-style: none;
     }
 
     ul#games-list li {
         display: inline-block;
-        max-width: 250px;
-        min-width: 195px;
+        max-width: 332px;
         height: 200px;
-        flex-grow: 1;
         box-sizing: border-box;
-        margin: 10px;
 
         overflow: hidden;
     }
