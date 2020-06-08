@@ -137,9 +137,7 @@
     {...$$restProps}
     bind:this={element}
     on:mousedown={pickUp}
-    on:mouseup={putDown}
     on:touchstart={pickUp}
-    on:touchend={putDown}
     on:wheel|stopPropagation={onWheel}
     class:draggable={!disabled}
     class:pickedUp={pickedUp}
@@ -150,3 +148,7 @@
         {style}">
     <slot />
 </div>
+
+<svelte:window 
+    on:mouseup={putDown}
+    on:touchend={putDown} />
