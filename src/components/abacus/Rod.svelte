@@ -65,7 +65,7 @@
         width: 1.5rem;
     }
     button {
-        margin-left: calc(min(1024px, 75vw) + 10px);
+        margin-left: calc(80vw);
         float: right;
         position: absolute;
         border-radius: 50%;
@@ -88,7 +88,7 @@
         <span
             style="{color ? `background: ${color};` : ''}" class="bead"
             on:click={() => onClick(leftArr.length + index + 1)}
-            in:receive={({ key: leftArr.length + index })}
+            in:receive={{ key: leftArr.length + index }}
             out:send={{key: leftArr.length + index}} />
     {/each}
 </div>

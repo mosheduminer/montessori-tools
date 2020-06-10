@@ -33,7 +33,7 @@ export default {
 			}),
 			commonjs(),
 
-			legacy && babel({
+			!dev && babel({
 				extensions: ['.js', '.mjs', '.html', '.svelte'],
 				runtimeHelpers: true,
 				exclude: ['node_modules/@babel/**'],
@@ -43,6 +43,7 @@ export default {
 					}]
 				],
 				plugins: [
+					'@babel/plugin-proposal-object-rest-spread',
 					'@babel/plugin-syntax-dynamic-import',
 					['@babel/plugin-transform-runtime', {
 						useESModules: true
