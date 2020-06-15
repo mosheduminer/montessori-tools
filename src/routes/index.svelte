@@ -127,6 +127,8 @@
     <p>
         Welcome to Virtual Montessori Materials. This is a collection of games and tools to support teachers during the COVID-19 pandemic and beyond.
         <br/><br/>
+        This work was highly inspired by work by <a href="https://www.ryannevius.com">Ryan Nevius</a> at <a href="https://montessori.tools/">montessori.tools</a>. Be sure to check it out!
+        <br/><br/>
         All of these games are developed by volunteers during their spare time.
         If you find value in these tools and want to support their creation and maintanence please <a href="https://www.paypal.me/mosheduminer">donate here.</a>
     </p>
