@@ -153,7 +153,7 @@
     <DragArea draggable={draggable} latest="{latest}">
         <div id="bead-frame">
             <div id="bead-frame-top">
-                {#each [ ...Array(3).keys() ] as i}
+                {#each [ ...[ ...Array(3).keys() ].reverse() ] as i}
                     <div class="bead-top-cell">
                         <span>{formatNumber(1000 ** i)}</span>
                         <span>100</span>
