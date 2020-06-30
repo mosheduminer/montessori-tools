@@ -35,6 +35,10 @@ Please make a pull request to master and ask a contributer to review. This is ta
 - Fractions - [Moshe Uminer][1] and [Menachem Hornbacher][2]
 - Bead Bars - [Menachem Hornbacher][2]
 - Abacus/Large Bead Frame - [Moshe Uminer][1]
+- Bead Frame - [Moshe Uminer][1] and [Menachem Hornbacher][2]
+- Moveable Alphabet - [Arye Dov Eidelman][3]
+- Stamp Game - [Menachem Hornbacher][2]
+- Golden Beads - [Moshe Uminer][1]
 
 # Licence
 
@@ -44,3 +48,4 @@ If you can, please don't be evil.
 
 [1]: https://github.com/mosheduminer
 [2]: https://github.com/mhornbacher
+[3]: https://github.com/arye-dov-eidelman
