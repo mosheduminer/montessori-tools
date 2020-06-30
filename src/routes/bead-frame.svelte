@@ -80,6 +80,7 @@
         text-align: center;
         font-size: 20px;
         font-family: macursiveul;
+        font-weight: bold;
         color: rgb(193,154,107);
     }
 
@@ -135,6 +136,7 @@
     #bead-frame-bottom {
         height: 60px;
         font-size: 27px;
+        font-weight: bold;
         color: #f5840f;
         display: flex;
         justify-content: space-around;
