@@ -28,6 +28,7 @@
 
 <style>
     div {
+        touch-action: none;
         position: absolute;
     }
     svg { position: absolute; z-index: -99999999999; }
