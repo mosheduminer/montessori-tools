@@ -28,6 +28,7 @@
 
 <style>
     div {
+        touch-action: none;
         position: absolute;
     }
     svg { position: absolute; z-index: -99999999999; }
@@ -44,6 +45,7 @@
 </svg>
 {/if}
 
-<div on:mousedown={spawn} on:touchstart={spawn} {...$$restProps} bind:this={element} style="clip-path: url(#{svgId})" class="fraction-size">
+<div on:mousedown={spawn} on:touchstart={spawn} {...$$restProps} bind:this={element}
+    style="-webkit-clip-path: url(#{svgId}); clip-path: url(#{svgId})" class="fraction-size">
     <Slice fraction={fraction} offset={offset} disabled={true} svgId={svgId} />
 </div>
