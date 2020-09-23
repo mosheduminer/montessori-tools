@@ -14,8 +14,8 @@
     export let style = "";
     export let rotateDegrees = 0;
 
-    const pickupAudio = typeof Audio !== 'undefined' && new Audio('/audio/pickup.mp3');
-    const putdownAudio = typeof Audio !== 'undefined' && new Audio('/audio/putdown.mp3');
+//     const pickupAudio = typeof Audio !== 'undefined' && new Audio('/audio/pickup.mp3');
+//     const putdownAudio = typeof Audio !== 'undefined' && new Audio('/audio/putdown.mp3');
 
     let element, listener, coords, isRotated;
     const dispatch = createEventDispatcher();
@@ -83,8 +83,8 @@
                 ({x, y}) => update(x, y)
         );
         pickedUp = true;
-        pickupAudio && (pickupAudio.volume = 0.2);
-        pickupAudio && pickupAudio.play();
+//         pickupAudio && (pickupAudio.volume = 0.2);
+//         pickupAudio && pickupAudio.play();
     };
 
     var putDown = () => {
@@ -114,8 +114,8 @@
 
         pickedUp = false;
         startPickedUp = false;
-        putdownAudio && (putdownAudio.volume = 0.2);
-        putdownAudio && putdownAudio.play();
+//         putdownAudio && (putdownAudio.volume = 0.2);
+//         putdownAudio && putdownAudio.play();
     };
 
     const onWheel = (event) => {
