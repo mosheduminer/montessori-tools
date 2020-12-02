@@ -29,6 +29,12 @@ jobs:
       - name: Export
         run: npm run export
       
+      - name: Where Am I
+        run: pwd
+      
+      - name: Whats Here
+        run: ls
+      
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
         with:
