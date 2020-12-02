@@ -36,4 +36,4 @@ jobs:
           name: id_rsa # optional
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
       - name: rsync over ssh
-        run: rsync ./__sapper__/export dh_mendel@ps565483.dreamhostps.com:virtualmontessorimaterials.com/public
+        run: rsync -e -c -r --delete ~/work/montessori-tools/montessori-tools/__sapper__/export dh_mendel@ps565483.dreamhostps.com:virtualmontessorimaterials.com/public
