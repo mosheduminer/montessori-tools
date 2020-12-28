@@ -194,14 +194,9 @@
 
     <small>
         <div>
-            Source code available <a href="https://github.com/Virtual-Montessori/montessori-tools">on GitHub</a>. Please report any bugs or feature requests there.
-        </div>
-        <div>
             Icons from <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a>
             & <a href="https://www.flaticon.com/authors/flat-icons" title="Flat Icons">Flat Icons</a>
             from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> |
-            Project of <a href="https://www.linkedin.com/in/rivkah-schack-51167a63/">Rivkah Schack</a>
-            and <a href="https://github.com/mosheduminer">Moshe Uminer</a> |
             Hosted on <a href="https://www.netlify.com/">Netlify</a>
         </div>
     </small>
