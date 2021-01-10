@@ -145,15 +145,8 @@
     {...$$restProps}
     bind:this={element}
     on:mousedown={pickUp}
-    on:touchstart={(e) => {
-        console.log(e);
-        if (e.touches.length > 1) {
-            onWheel(e);
-        } else pickUp(e);
-    }}
-    on:touchmove={e => {
-        console.log(e)
-    }}
+    on:touchstart={pickUp}
+    on:pointermove={onWheel}
     on:wheel|stopPropagation={onWheel}
     class:draggable={!disabled}
     class:pickedUp

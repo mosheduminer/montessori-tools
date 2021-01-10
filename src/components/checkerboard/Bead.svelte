@@ -34,7 +34,7 @@
         if (detail.type === "wheel") {
             rotationDegrees += detail.deltaY * .1;            
         } else {
-            rotationDegrees += detail.rotation;
+            rotationDegrees += detail.twist;
         }
     }
 </script>
