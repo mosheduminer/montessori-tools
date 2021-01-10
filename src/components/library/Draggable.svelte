@@ -151,6 +151,9 @@
             onWheel(e);
         } else pickUp(e);
     }}
+    on:touchmove={e => {
+        console.log(e)
+    }}
     on:wheel|stopPropagation={onWheel}
     class:draggable={!disabled}
     class:pickedUp
