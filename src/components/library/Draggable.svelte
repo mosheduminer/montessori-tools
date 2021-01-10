@@ -146,7 +146,7 @@
     bind:this={element}
     on:mousedown={pickUp}
     on:touchstart={(e) => {
-        if (e.touches.length === 2) {
+        if (e.touches.length > 1) {
             onWheel(e);
         } else pickUp(e);
     }}
