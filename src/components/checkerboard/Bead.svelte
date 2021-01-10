@@ -31,7 +31,11 @@
     let rotationDegrees = 0;
     const rotate = ({detail}) => {
         if ($$restProps.disabled || !shouldRotate) return;
-        rotationDegrees += detail.deltaY * .1;
+        if (detail.type === "wheel") {
+            rotationDegrees += detail.deltaY * .1;            
+        } else {
+            rotationDegrees += detail.rotation;
+        }
     }
 </script>
 

@@ -61,6 +61,7 @@
 
     const pickUp = (e, useStartOffset) => {
         if (disabled) return;
+        console.log(e);
 
         const rect = element.getBoundingClientRect();
         if (!useStartOffset && !isRotated) {
@@ -138,6 +139,11 @@
     bind:this={element}
     on:mousedown={pickUp}
     on:touchstart={pickUp}
+    on:touchmove={e => {
+        if (e.touches.length === 2) {
+            onWheel(e);
+        }
+    }}
     on:wheel|stopPropagation={onWheel}
     class:draggable={!disabled}
     class:pickedUp={pickedUp}
