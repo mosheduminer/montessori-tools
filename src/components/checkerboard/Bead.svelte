@@ -7,32 +7,44 @@
 
     // color of beads determined by their size
     const colors = [
-        'red',
-        'green',
-        'pink',
-        'yellow',
-        'light-blue',
-        'light-purple',
-        'white',
-        'brown',
-        'dark-blue',
-        'gold'
+        "red",
+        "green",
+        "pink",
+        "yellow",
+        "light-blue",
+        "light-purple",
+        "white",
+        "brown",
+        "dark-blue",
+        "gold",
     ];
 
     // limit size to between 1 and 9
     let validSize;
-    $: validSize = (!size || size <= 1)
-            ? 1
-            : (size >= colors.length ? colors.length : size);
+    $: validSize =
+        !size || size <= 1 ? 1 : size >= colors.length ? colors.length : size;
 
     let color;
     $: color = colors[validSize - 1];
 
+    let startAngle = null;
+
     let rotationDegrees = 0;
-    const rotate = ({detail}) => {
+    const wheelRotate = ({ detail }) => {
         if ($$restProps.disabled || !shouldRotate) return;
-        rotationDegrees += detail.deltaY * .1;
-    }
+        rotationDegrees += detail.deltaY * 0.1;
+    };
+    const touchRotate = ({ detail }) => {
+        if ($$restProps.disabled || !shouldRotate) return;
+        const dx = detail.touches[1].pageX - detail.touches[0].pageX;
+        const dy = detail.touches[1].pageY - detail.touches[0].pageY;
+        if (startAngle === null) {
+            startAngle = rotationDegrees;
+        } else {
+            const angle = ((Math.atan2(dy, dx) * 180) / Math.PI) * 1.5;
+            rotationDegrees = angle + startAngle;
+        }
+    };
 </script>
 
 <style>
@@ -41,7 +53,7 @@
         height: auto;
         overflow: hidden;
         display: inline-flex;
-        transition: transform .1s ease-in-out;
+        transition: transform 0.1s ease-in-out;
     }
 
     .bead-cell {
@@ -54,35 +66,70 @@
     }
 
     @media (max-width: 1680px) {
-        .bead-cell:not(.full-size) { width: 15px; }
+        .bead-cell:not(.full-size) {
+            width: 15px;
+        }
     }
 
     @media (max-width: 1500px) {
-        .bead-cell:not(.full-size) { width: 12px; height: 14px; }
+        .bead-cell:not(.full-size) {
+            width: 12px;
+            height: 14px;
+        }
     }
 
     @media (max-width: 1325px) {
-        .bead-cell:not(.full-size) { width: 9px; height: 13px; }
+        .bead-cell:not(.full-size) {
+            width: 9px;
+            height: 13px;
+        }
     }
 
-    .bead-red { background-color: red; }
-    .bead-green { background-color: #04c104; }
-    .bead-pink { background-color: pink; }
-    .bead-yellow { background-color: yellow; }
-    .bead-light-blue { background-color: lightblue; }
-    .bead-light-purple { background-color: plum; }
-    .bead-white { background-color: white; }
-    .bead-brown { background-color: brown; }
-    .bead-dark-blue { background-color: darkblue; }
-    .bead-gold { background-color: goldenrod; }
+    .bead-red {
+        background-color: red;
+    }
+    .bead-green {
+        background-color: #04c104;
+    }
+    .bead-pink {
+        background-color: pink;
+    }
+    .bead-yellow {
+        background-color: yellow;
+    }
+    .bead-light-blue {
+        background-color: lightblue;
+    }
+    .bead-light-purple {
+        background-color: plum;
+    }
+    .bead-white {
+        background-color: white;
+    }
+    .bead-brown {
+        background-color: brown;
+    }
+    .bead-dark-blue {
+        background-color: darkblue;
+    }
+    .bead-gold {
+        background-color: goldenrod;
+    }
 </style>
 
-<Draggable {...$$restProps}
-           class="bead bead-{validSize} bead-{color}"
-           on:moved
-           on:wheel={rotate}
-           bind:rotateDegrees={rotationDegrees}>
+<Draggable
+    {...$$restProps}
+    class="bead bead-{validSize} bead-{color}"
+    on:moved
+    on:touchrotateend={() => {
+        startAngle = null;
+    }}
+    on:touchrotate={touchRotate}
+    on:wheel={wheelRotate}
+    bind:rotateDegrees={rotationDegrees}>
     {#each Array(validSize) as i}
-        <span class="bead-cell bead-{validSize} bead-{color}" class:full-size={fullSize}></span>
+        <span
+            class="bead-cell bead-{validSize} bead-{color}"
+            class:full-size={fullSize} />
     {/each}
 </Draggable>
