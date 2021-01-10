@@ -45,6 +45,10 @@
 </script>
 
 <style>
+    :global(body) {
+        overflow: hidden;
+    }
+
     section {
         height: 100vh;
         width: 100vw;
