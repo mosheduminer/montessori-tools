@@ -1,8 +1,8 @@
 <script>
-    import { spring } from 'svelte/motion';
-    import { createEventDispatcher, onMount } from 'svelte';
-    import { subscribe, TOPICS } from '../../lib/pubsub';
-    import { getOffset } from '../../lib/utils';
+    import { spring } from "svelte/motion";
+    import { createEventDispatcher, onMount } from "svelte";
+    import { subscribe, TOPICS } from "../../lib/pubsub";
+    import { getOffset } from "../../lib/utils";
 
     export let x = undefined;
     export let y = undefined;
@@ -14,8 +14,8 @@
     export let style = "";
     export let rotateDegrees = 0;
 
-//     const pickupAudio = typeof Audio !== 'undefined' && new Audio('/audio/pickup.mp3');
-//     const putdownAudio = typeof Audio !== 'undefined' && new Audio('/audio/putdown.mp3');
+    //     const pickupAudio = typeof Audio !== 'undefined' && new Audio('/audio/pickup.mp3');
+    //     const putdownAudio = typeof Audio !== 'undefined' && new Audio('/audio/putdown.mp3');
 
     let element, listener, coords, isRotated;
     const dispatch = createEventDispatcher();
@@ -34,9 +34,9 @@
 
         let initialPos = {
             x: x || offset.x,
-            y: y || offset.y
+            y: y || offset.y,
         };
-        coords = spring(initialPos, {stiffness: 1, damping: 0.8});
+        coords = spring(initialPos, { stiffness: 1, damping: 0.8 });
 
         if (startPickedUp) {
             offset = startOffset || offset;
@@ -50,7 +50,7 @@
         if (disabled) return;
         coords.set({
             x: x - offset.x,
-            y: y - offset.y
+            y: y - offset.y,
         });
 
         if (startPickedUp) {
@@ -61,12 +61,11 @@
 
     const pickUp = (e, useStartOffset) => {
         if (disabled) return;
-        console.log(e);
 
         const rect = element.getBoundingClientRect();
         if (!useStartOffset && !isRotated) {
             // TODO: Fix FireFox
-            offset = getOffset(e, rect)
+            offset = getOffset(e, rect);
         } else if (isRotated) {
             // get the diff from a straight circle
             const widthDiff = (initialRect.width - rect.width) / 2;
@@ -78,50 +77,58 @@
         }
 
         // move 100 levels above it's current z-index to ensure we catch click events
-        element && (element.style.zIndex = ((parseInt(element.style.zIndex) || 0) + 100).toString());
-        listener = listener || subscribe(
-                (topic || TOPICS.DRAG_AREA.MOVE),
-                ({x, y}) => update(x, y)
-        );
+        element &&
+            (element.style.zIndex = (
+                (parseInt(element.style.zIndex) || 0) + 100
+            ).toString());
+        listener =
+            listener ||
+            subscribe(topic || TOPICS.DRAG_AREA.MOVE, ({ x, y }) =>
+                update(x, y)
+            );
         pickedUp = true;
-//         pickupAudio && (pickupAudio.volume = 0.2);
-//         pickupAudio && pickupAudio.play();
+        //         pickupAudio && (pickupAudio.volume = 0.2);
+        //         pickupAudio && pickupAudio.play();
     };
 
     var putDown = () => {
         if (disabled) return;
 
-        element && (element.style.zIndex = ((parseInt(element.style.zIndex) || 100) - 100).toString());
+        element &&
+            (element.style.zIndex = (
+                (parseInt(element.style.zIndex) || 100) - 100
+            ).toString());
 
         if (listener && listener.remove) {
             listener = listener.remove();
         }
 
-        let normalized = normalize && typeof normalize === 'function'
-            ? normalize($coords.x, $coords.y)
-            : { x: $coords ? $coords.x : 0, y: $coords ? $coords.y : 0 };
+        let normalized =
+            normalize && typeof normalize === "function"
+                ? normalize($coords.x, $coords.y)
+                : { x: $coords ? $coords.x : 0, y: $coords ? $coords.y : 0 };
 
         const data = {
             index,
             from: { x, y },
-            to: { x: normalized.x, y: normalized.y }
+            to: { x: normalized.x, y: normalized.y },
         };
 
-        if (validate && typeof validate === 'function' && !validate(data)) {
-            coords.set({x, y});
+        if (validate && typeof validate === "function" && !validate(data)) {
+            coords.set({ x, y });
         } else {
-            dispatch('moved', data);
+            dispatch("moved", data);
         }
 
         pickedUp = false;
         startPickedUp = false;
-//         putdownAudio && (putdownAudio.volume = 0.2);
-//         putdownAudio && putdownAudio.play();
+        //         putdownAudio && (putdownAudio.volume = 0.2);
+        //         putdownAudio && putdownAudio.play();
     };
 
     const onWheel = (event) => {
         if (!pickedUp) {
-            dispatch('wheel', event);
+            dispatch("wheel", event);
         }
     };
 
@@ -138,15 +145,14 @@
     {...$$restProps}
     bind:this={element}
     on:mousedown={pickUp}
-    on:touchstart={pickUp}
-    on:touchmove={e => {
+    on:touchstart={(e) => {
         if (e.touches.length === 2) {
             onWheel(e);
-        }
+        } else pickUp(e);
     }}
     on:wheel|stopPropagation={onWheel}
     class:draggable={!disabled}
-    class:pickedUp={pickedUp}
+    class:pickedUp
     style="left: {$coords && $coords.x + 'px'};
         top: {$coords && $coords.y + 'px'};
         cursor: {disabled ? 'auto' : pickedUp ? 'grabbing' : 'grab'};
@@ -155,6 +161,4 @@
     <slot />
 </div>
 
-<svelte:window 
-    on:mouseup={putDown}
-    on:touchend={putDown} />
+<svelte:window on:mouseup={putDown} on:touchend={putDown} />
