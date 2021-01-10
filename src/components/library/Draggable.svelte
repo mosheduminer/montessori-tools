@@ -145,9 +145,18 @@
     {...$$restProps}
     bind:this={element}
     on:mousedown={pickUp}
-    on:touchstart={pickUp}
-    on:pointermove={onWheel}
-    on:wheel|stopPropagation={onWheel}
+    on:touchstart|preventDefault={(e) => {
+        if (e.touches.length === 1) pickUp(e);
+        else e.stopPropagation();
+    }}
+    on:touchmove|preventDefault={(e) => {
+        if (e.touches.length > 1) {
+            dispatch("touchrotate", e);
+            putDown();
+            e.stopPropagation();
+        }
+    }}
+    on:wheel|stopPropagation|preventDefault={onWheel}
     class:draggable={!disabled}
     class:pickedUp
     style="left: {$coords && $coords.x + 'px'};
@@ -158,4 +167,4 @@
     <slot />
 </div>
 
-<svelte:window on:mouseup={putDown} on:touchend={putDown} />
+<svelte:window on:mouseup={putDown} on:touchend={e => {putDown(); dispatch("touchrotateend")}} />
