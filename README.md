@@ -1,6 +1,6 @@
 # Virtual Montessori Materials
 
-> Series of virtual tools for Montessori education. Available online at https://virtualmontessorimaterials.com/
+> Series of virtual tools for Montessori education. Available online at https://montessoritools.org/
 
 This project is highly inspired (while no code is copied from) the amazing work from @rnevius at https://montessori.tools.
 
