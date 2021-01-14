@@ -1,6 +1,6 @@
 # Virtual Montessori Materials
 
-> Series of virtual tools for Montessori education. Available online at https://virtualmontessorimaterials.com/
+> Series of virtual tools for Montessori education. Available online at https://montessoritools.org/
 
 This project is highly inspired (while no code is copied from) the amazing work from @rnevius at https://montessori.tools.
 
@@ -9,10 +9,6 @@ Be sure to check it out!!!
 # Motivation
 
 Due to the COVID-19 pandemic many students around the world are forced to stay home without the materials they are used to in the classroom. This project aims to provide offline web based materials that students can use on their home computers.
-
-![Build and Release](https://github.com/Virtual-Montessori/montessori-tools/workflows/Build%20and%20Release/badge.svg?branch=master)
-
-![CodeQL](https://github.com/Virtual-Montessori/montessori-tools/workflows/CodeQL/badge.svg?branch=master)
 
 # Tech
 
