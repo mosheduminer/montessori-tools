@@ -10,10 +10,6 @@ Be sure to check it out!!!
 
 Due to the COVID-19 pandemic many students around the world are forced to stay home without the materials they are used to in the classroom. This project aims to provide offline web based materials that students can use on their home computers.
 
-![Build and Release](https://github.com/Virtual-Montessori/montessori-tools/workflows/Build%20and%20Release/badge.svg?branch=master)
-
-![CodeQL](https://github.com/Virtual-Montessori/montessori-tools/workflows/CodeQL/badge.svg?branch=master)
-
 # Tech
 
 Built with Svelte
