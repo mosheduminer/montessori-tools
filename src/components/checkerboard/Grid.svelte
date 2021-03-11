@@ -20,10 +20,10 @@
 
 <style>
     #grid {
-        min-width: 975px;
+        min-width: min(975px, 99vw);
         display: grid;
-        grid-template-columns: repeat(9, minmax(104px, 1fr)) 58px;
-        max-width: 1620px;
+        grid-template-columns: repeat(9, minmax(min(104px, calc(99vw / 10)), 1fr)) 58px;
+        max-width: 2048px;
         margin: 0 auto;
     }
 
@@ -33,28 +33,61 @@
     }
 
     .column {
-        height: 170px;
-        min-width: 170px;
+        height: 190px;
+        min-width: 200px;
         flex-grow: 1;
+    }
+
+    @media (max-height: 1424px) {
+        .column {
+            height: 180px;
+        }
+    }
+
+    @media (max-height: 1024px) {
+        .column {
+            height: 152px;
+        }
+    }
+
+    @media (max-height: 890px) {
+        .column {
+            height: 125px;
+        }
+    }
+
+    @media (max-height: 820px) {
+        .column {
+            height: 14vh;
+        }
+    }
+
+    @media (max-height: 650px) {
+        .column {
+            height: 10vh;
+        }
+    }
+
+    @media (max-height: 700px) {
+        .column {
+            height: 12vh;
+        }
     }
 
     @media (max-width: 1680px) {
         .column {
-            height: 152px;
             min-width: 152px;
         }
     }
 
     @media (max-width: 1500px) {
         .column {
-            height: 125px;
             min-width: 141px;
         }
     }
 
     @media (max-width: 1325px) {
         .column {
-            height: 104px;
             min-width: 103.02px;
         }
     }
