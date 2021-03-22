@@ -150,10 +150,9 @@
         margin: 0 auto;
         box-shadow: 0px 0px 18px inset rgba(0, 0, 0, .5), 1px 1px 10px rgba(0, 0, 0, .5);
     }
-
-    @media (max-height: 1400px) {
+    @media (max-height: 800px) {
         #grid {
-            min-height: 380px;
+            min-height: calc(100vh - 250px);
         }
     }
 </style>
