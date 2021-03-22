@@ -152,7 +152,7 @@
     }
     @media (max-height: 800px) {
         #grid {
-            min-height: calc(100vh - 250px);
+            min-height: calc(100vh - 270px);
         }
     }
 </style>
