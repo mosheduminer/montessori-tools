@@ -1,6 +1,5 @@
 <script>
     import Bead from '../components/checkerboard/Bead.svelte';
-    import Grid from '../components/checkerboard/Grid.svelte';
     import NumberCard from '../components/checkerboard/NumberCard.svelte';
     import SpawnArea from '../components/library/SpawnArea.svelte';
     import DragArea from '../components/library/DragArea.svelte';
@@ -150,6 +149,12 @@
         box-sizing: border-box;
         margin: 0 auto;
         box-shadow: 0px 0px 18px inset rgba(0, 0, 0, .5), 1px 1px 10px rgba(0, 0, 0, .5);
+    }
+
+    @media (max-height: 1400px) {
+        #grid {
+            min-height: 380px;
+        }
     }
 </style>
 
